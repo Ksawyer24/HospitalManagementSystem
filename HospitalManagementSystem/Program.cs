@@ -18,6 +18,10 @@ builder.Services.AddDbContext<HospitalSysDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("HospitalConnectionString")));
 
 
+
+//builder.Services.AddScoped<ICartRepo, CartRepo>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

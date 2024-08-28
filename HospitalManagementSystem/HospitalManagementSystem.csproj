@@ -24,8 +24,6 @@
     <Folder Include="Controllers\" />
     <Folder Include="Dto\" />
     <Folder Include="Mappings\" />
-    <Folder Include="Interface\" />
-    <Folder Include="Repos\" />
   </ItemGroup>
 
 </Project>
