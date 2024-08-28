@@ -21,11 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <Folder Include="Controllers\" />
     <Folder Include="Dto\" />
     <Folder Include="Mappings\" />
-    <Folder Include="Models\BillingManagement\" />
-    <Folder Include="Models\StaffManagement\" />
+    <Folder Include="Interface\" />
     <Folder Include="Repos\" />
   </ItemGroup>
 
