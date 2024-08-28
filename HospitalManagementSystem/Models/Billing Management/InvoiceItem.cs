@@ -11,6 +11,6 @@ namespace HospitalManagementSystem.Models.Billing_Management
         [Column(TypeName = "decimal(18,4)")]
         public decimal UnitPrice { get; set; }
         public long InvoiceId { get; set; }
-       public BiilingInvoice Invoice { get; set; }
+       public BillingInvoice Invoice { get; set; }
     }
 }

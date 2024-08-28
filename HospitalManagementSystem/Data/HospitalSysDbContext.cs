@@ -24,7 +24,7 @@ namespace HospitalManagementSystem.Data
         public DbSet<MedicalHistory> MedicalHistories { get; set; }
         public DbSet<LabTest> LabTests { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<BiilingInvoice> BiilingInvoices { get; set; }
+        public DbSet<BillingInvoice> BillingInvoices { get; set; }
         public DbSet<InvoiceItem> InvoiceItems { get; set; }
 
 

@@ -1,6 +1,6 @@
 ﻿namespace HospitalManagementSystem.Models.Billing_Management
 {
-    public class BiilingInvoice
+    public class BillingInvoice
     {
         public long Id { get; set; }
         public string InvoiceNumber { get; set; } = string.Empty;
