@@ -45,6 +45,7 @@ namespace HospitalManagementSystem.Dto
         public string PhoneNumberOfContact { get; set; } = string.Empty;
 
         public bool? InsuranceIsActive { get; set; }
+
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
         public ICollection<Prescriptions> Prescriptions { get; set; } = new List<Prescriptions>();
