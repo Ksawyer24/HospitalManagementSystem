@@ -26,6 +26,7 @@ namespace HospitalManagementSystem.Dto
 
         public ICollection<LabTest> Labs { get; set; } = new List<LabTest>();
 
+       
         public MedicalHistory MedicalHistory { get; set; }
     }
 
@@ -69,6 +70,7 @@ namespace HospitalManagementSystem.Dto
         public bool? InsuranceIsActive { get; set; }
     }
 
+    //
 
 
 }
