@@ -1,4 +1,7 @@
 using HospitalManagementSystem.Data;
+using HospitalManagementSystem.Mappings;
+using HospitalManagementSystem.Services.Interface;
+using HospitalManagementSystem.Services.Repos;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,8 +21,11 @@ builder.Services.AddDbContext<HospitalSysDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("HospitalConnectionString")));
 
 
+builder.Services.AddAutoMapper(typeof(MapperProfiles));
 
-//builder.Services.AddScoped<ICartRepo, CartRepo>();
+
+builder.Services.AddScoped<IPatientRepo, PatientRepo>();
+builder.Services.AddScoped<IMedicalHistoryRepo,MedicalHistoryRepo>();
 
 
 var app = builder.Build();
