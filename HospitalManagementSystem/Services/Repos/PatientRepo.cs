@@ -21,9 +21,9 @@ namespace HospitalManagementSystem.Services.Repos
             return patient;
         }
 
-        public async Task<Patient?> DeletePatientAsync(long id)
+        public async Task<Patient?> DeletePatientAsync(long patientId)
         {
-            var existing = await hospitalSysDbContext.Patients.FirstOrDefaultAsync(x => x.Id == id);
+            var existing = await hospitalSysDbContext.Patients.FirstOrDefaultAsync(x => x.Id == patientId);
 
             if (existing == null)
             {
@@ -36,9 +36,10 @@ namespace HospitalManagementSystem.Services.Repos
             return existing;
         }
 
-        public async Task<Patient?> GetPatientIdAsync(long id)
+        public async Task<Patient?> GetPatientIdAsync(long patientId)
         {
-            return await hospitalSysDbContext.Patients.FirstOrDefaultAsync(x => x.Id == id);
+            return await hospitalSysDbContext.Patients.FirstOrDefaultAsync(x => x.Id == patientId);
+
         }
 
         public async Task<List<Patient>> GetAllPatientsAsync()
@@ -46,9 +47,9 @@ namespace HospitalManagementSystem.Services.Repos
            return await hospitalSysDbContext.Patients.ToListAsync();
         }
 
-        public async Task<Patient?> UpdatePatientAsync(long id, Patient patient)
+        public async Task<Patient?> UpdatePatientAsync(long patientId, Patient patient)
         {
-            var existing = await hospitalSysDbContext.Patients.FirstOrDefaultAsync(x => x.Id == id);
+            var existing = await hospitalSysDbContext.Patients.FirstOrDefaultAsync(x => x.Id == patientId);
 
             if (existing == null)
             {

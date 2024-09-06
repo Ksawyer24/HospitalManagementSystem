@@ -4,6 +4,7 @@ namespace HospitalManagementSystem.Models.AppointmentManagement
 {
     public class Appointment
     {
+
         public long AppointmentId { get; set; }
         public long PatientId { get; set; }
         public long DoctorId { get; set; }

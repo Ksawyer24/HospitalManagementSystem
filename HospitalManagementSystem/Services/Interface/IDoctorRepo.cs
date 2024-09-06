@@ -3,16 +3,17 @@ using HospitalManagementSystem.Models.PatientManagement;
 
 namespace HospitalManagementSystem.Services.Interface
 {
+
     public interface IDoctorRepo
     {
-        Task<List<Doctor>> GetAllPatientsAsync();
+        Task<List<Doctor>> GetAllDoctorsAsync();
 
-        Task<Doctor?> GetPatientIdAsync(long id);
+        Task<Doctor?> GetDoctorsIdAsync(long id);
 
         Task<Doctor> CreateAsync(Doctor doctor);
 
-        Task<Doctor?> UpdatePatientAsync(long id, Doctor doctor);
+        Task<Doctor?> UpdateDoctorAsync(long id, Doctor doctor);
 
-        Task<Doctor?> DeletePatientAsync(long id);
+        Task<Doctor?> DeleteDoctorsAsync(long id);
     }
 }

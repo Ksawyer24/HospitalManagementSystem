@@ -20,14 +20,6 @@ namespace HospitalManagementSystem.Dto
 
         public bool? InsuranceIsActive { get; set; }
 
-        public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
-
-        public ICollection<Prescriptions> Prescriptions { get; set; } = new List<Prescriptions>();
-
-        public ICollection<LabTest> Labs { get; set; } = new List<LabTest>();
-
-       
-        public MedicalHistory MedicalHistory { get; set; }
     }
 
 
@@ -46,11 +38,9 @@ namespace HospitalManagementSystem.Dto
 
         public bool? InsuranceIsActive { get; set; }
 
-        public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
+       
 
-        public ICollection<Prescriptions> Prescriptions { get; set; } = new List<Prescriptions>();
-
-        public ICollection<LabTest> Labs { get; set; } = new List<LabTest>();
+        public AddMedicalHistory MedicalHistory { get; set; }
 
     }
 
@@ -69,9 +59,10 @@ namespace HospitalManagementSystem.Dto
         public string PhoneNumberOfContact { get; set; } = string.Empty;
 
         public bool? InsuranceIsActive { get; set; }
+
     }
 
-    //
+  
 
 
 }

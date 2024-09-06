@@ -13,7 +13,7 @@ namespace HospitalManagementSystem.Dto
         public DateTime DateOfLastVisit { get; set; }
         public string? Notes { get; set; } = string.Empty;
 
-       // public Patient Patient { get; set; }
+        public PatientDto Patient { get; set; }
     }
 
 
@@ -21,12 +21,12 @@ namespace HospitalManagementSystem.Dto
 
     public class AddMedicalHistory
     {
-        public long PatientId { get; set; }
+      
         public List<string>? Conditions { get; set; }
         public List<string>? Medications { get; set; }
         public List<string>? Allergies { get; set; }
         public bool? HadSurgery { get; set; }
-        public DateTime DateOfLastVisit { get; set; }
+        public DateTime? DateOfLastVisit { get; set; }
         public string? Notes { get; set; } = string.Empty;
     }
 
@@ -34,12 +34,12 @@ namespace HospitalManagementSystem.Dto
 
     public class UpdateMedicalHistory
     {
-        public long PatientId { get; set; }
+       
         public List<string>? Conditions { get; set; }
         public List<string>? Medications { get; set; }
         public List<string>? Allergies { get; set; }
         public bool? HadSurgery { get; set; }
-        public DateTime DateOfLastVisit { get; set; }
+        public DateTime? DateOfLastVisit { get; set; }
         public string? Notes { get; set; } = string.Empty;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace HospitalManagementSystem.Models.DoctorManagement
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace HospitalManagementSystem.Models.DoctorManagement
 {
     public class Doctor
     {
@@ -7,6 +9,8 @@
         public DateTime DateOfBirth { get; set; }
         public string Specialization { get; set; } = string.Empty;
         public int YearsOfExperience { get; set; }
+
+        [Phone]
         public string ContactNumber { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;

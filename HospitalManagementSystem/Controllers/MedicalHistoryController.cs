@@ -61,7 +61,7 @@ namespace HospitalManagementSystem.Controllers
         }
 
 
-        [HttpPost]
+       /* [HttpPost]
         public async Task<IActionResult> Create([FromBody] AddMedicalHistory addMedicalHistory)
         {
 
@@ -87,6 +87,7 @@ namespace HospitalManagementSystem.Controllers
 
 
         }
+       */
 
 
         [HttpPut]

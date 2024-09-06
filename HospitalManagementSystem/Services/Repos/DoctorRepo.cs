@@ -1,6 +1,8 @@
 ﻿using HospitalManagementSystem.Data;
 using HospitalManagementSystem.Models.DoctorManagement;
+using HospitalManagementSystem.Models.PatientManagement;
 using HospitalManagementSystem.Services.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManagementSystem.Services.Repos
 {
@@ -15,29 +17,64 @@ namespace HospitalManagementSystem.Services.Repos
 
 
 
-        public Task<Doctor> CreateAsync(Doctor doctor)
+        public async Task<Doctor> CreateAsync(Doctor doctor)
         {
-            throw new NotImplementedException();
+           await hospitalSysDbContext.Doctors.AddAsync(doctor);
+            await hospitalSysDbContext.SaveChangesAsync();
+            return doctor;
         }
 
-        public Task<Doctor?> DeletePatientAsync(long id)
+        public async Task<Doctor?> DeleteDoctorsAsync(long id)
         {
-            throw new NotImplementedException();
+            var existing = await hospitalSysDbContext.Doctors.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (existing == null)
+            {
+                return null;
+
+            }
+
+            hospitalSysDbContext.Doctors.Remove(existing);
+            await hospitalSysDbContext.SaveChangesAsync();
+            return existing;
         }
 
-        public Task<List<Doctor>> GetAllPatientsAsync()
+        public async Task<List<Doctor>> GetAllDoctorsAsync()
         {
-            throw new NotImplementedException();
+            return await hospitalSysDbContext.Doctors.ToListAsync();
         }
 
-        public Task<Doctor?> GetPatientIdAsync(long id)
+        public async Task<Doctor?> GetDoctorsIdAsync(long id)
         {
-            throw new NotImplementedException();
+            return await hospitalSysDbContext.Doctors.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<Doctor?> UpdatePatientAsync(long id, Doctor doctor)
+        
+
+        public async Task<Doctor?> UpdateDoctorAsync(long id, Doctor doctor)
         {
-            throw new NotImplementedException();
+            var existing = await hospitalSysDbContext.Doctors.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (existing == null)
+            {
+                return null;
+
+            }
+
+
+            existing.Name = doctor.Name;
+            existing.DateOfBirth = doctor.DateOfBirth;
+            existing.Specialization = doctor.Specialization;
+            existing.YearsOfExperience = doctor.YearsOfExperience;
+            existing.ContactNumber = doctor.ContactNumber;
+            existing.Email = doctor.Email;
+            doctor.Address = doctor.Address;
+            doctor.WorkingDays= doctor.WorkingDays;
+
+
+
+            await hospitalSysDbContext.SaveChangesAsync();
+            return existing;
         }
     }
 }

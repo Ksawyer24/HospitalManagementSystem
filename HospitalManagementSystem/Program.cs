@@ -18,7 +18,7 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddDbContext<HospitalSysDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("HospitalConnectionString")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("HospitalConnectionString")));
 
 
 builder.Services.AddAutoMapper(typeof(MapperProfiles));
@@ -26,6 +26,11 @@ builder.Services.AddAutoMapper(typeof(MapperProfiles));
 
 builder.Services.AddScoped<IPatientRepo, PatientRepo>();
 builder.Services.AddScoped<IMedicalHistoryRepo,MedicalHistoryRepo>();
+builder.Services.AddScoped<IDoctorRepo,DoctorRepo>();
+builder.Services.AddScoped<IStaffRepo,StaffRepo>();
+builder.Services.AddScoped<IPrescriptionRepo, PrescriptionRepo>();
+builder.Services.AddScoped<IInventoryRepo, InventoryRepo>();
+//builder.Services.AddScoped<IInventoryRepo, InventoryRepo>();
 
 
 var app = builder.Build();

@@ -59,7 +59,7 @@ namespace HospitalManagementSystem.Services.Repos
             }
 
 
-            existing.PatientId = medical.PatientId;
+           
             existing.Conditions = medical.Conditions;
             existing.Medications = medical.Medications;
             existing.Allergies = medical.Allergies;

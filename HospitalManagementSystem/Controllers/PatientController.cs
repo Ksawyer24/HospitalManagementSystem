@@ -70,13 +70,7 @@ namespace HospitalManagementSystem.Controllers
           {
 
 
-
-
-
-
               var ecodomainmodel = mapper.Map<Patient>(addPatientDto);
-
-
 
 
               ecodomainmodel = await patientRepo.CreateAsync(ecodomainmodel);
@@ -86,8 +80,6 @@ namespace HospitalManagementSystem.Controllers
 
 
              return CreatedAtAction(nameof(GetById), new { id = ecoDto.Id }, ecoDto);
-
-
 
 
           }
@@ -100,11 +92,7 @@ namespace HospitalManagementSystem.Controllers
           {
 
 
-
-
               var ecodomainmodel = mapper.Map<Patient>(updatePatientDto);
-
-
 
 
               ecodomainmodel = await patientRepo.UpdatePatientAsync(id, ecodomainmodel);
@@ -115,14 +103,11 @@ namespace HospitalManagementSystem.Controllers
               }
 
 
-
-
               return Ok(mapper.Map<PatientDto>(ecodomainmodel));
 
 
-
-
           }
+
 
 
           [HttpDelete]

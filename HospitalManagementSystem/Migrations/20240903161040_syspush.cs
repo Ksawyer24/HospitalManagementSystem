@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace HospitalManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class system : Migration
+    public partial class syspush : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,11 +18,11 @@ namespace HospitalManagementSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    InvoiceNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Patient = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PatientAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PatientContact = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    InvoiceNumber = table.Column<string>(type: "text", nullable: false),
+                    Patient = table.Column<string>(type: "text", nullable: false),
+                    PatientAddress = table.Column<string>(type: "text", nullable: false),
+                    PatientContact = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,15 +34,15 @@ namespace HospitalManagementSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Specialization = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    YearsOfExperience = table.Column<int>(type: "int", nullable: false),
-                    ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WorkingDays = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Specialization = table.Column<string>(type: "text", nullable: false),
+                    YearsOfExperience = table.Column<int>(type: "integer", nullable: false),
+                    ContactNumber = table.Column<string>(type: "text", nullable: false),
+                    Email = table.Column<string>(type: "text", nullable: false),
+                    Address = table.Column<string>(type: "text", nullable: false),
+                    WorkingDays = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,10 +54,11 @@ namespace HospitalManagementSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Supplier = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    ExpiryDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Supplier = table.Column<string>(type: "text", nullable: false),
+                    SupplierContact = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -67,13 +70,13 @@ namespace HospitalManagementSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PatientName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PatientContact = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NameOfEmergencyContact = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumberOfContact = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InsuranceIsActive = table.Column<bool>(type: "bit", nullable: true)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PatientName = table.Column<string>(type: "text", nullable: false),
+                    PatientContact = table.Column<string>(type: "text", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    NameOfEmergencyContact = table.Column<string>(type: "text", nullable: false),
+                    PhoneNumberOfContact = table.Column<string>(type: "text", nullable: false),
+                    InsuranceIsActive = table.Column<bool>(type: "boolean", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -85,11 +88,13 @@ namespace HospitalManagementSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Shift = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: false),
+                    Position = table.Column<string>(type: "text", nullable: false),
+                    YearsOfEmployment = table.Column<int>(type: "integer", nullable: false),
+                    WorkingDays = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,10 +106,10 @@ namespace HospitalManagementSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    UnitPrice = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ProductName = table.Column<string>(type: "text", nullable: false),
+                    Quantity = table.Column<int>(type: "integer", nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "numeric(18,4)", nullable: false),
                     InvoiceId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
@@ -123,14 +128,14 @@ namespace HospitalManagementSystem.Migrations
                 columns: table => new
                 {
                     AppointmentId = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     PatientId = table.Column<long>(type: "bigint", nullable: false),
                     DoctorId = table.Column<long>(type: "bigint", nullable: false),
-                    AppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Reason = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    AppointmentDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false),
+                    Reason = table.Column<string>(type: "text", nullable: false),
+                    Notes = table.Column<string>(type: "text", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -148,14 +153,14 @@ namespace HospitalManagementSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     PatientId = table.Column<long>(type: "bigint", nullable: false),
-                    MLS = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReviewedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TestName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TestDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Results = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    MLS = table.Column<string>(type: "text", nullable: false),
+                    ReviewedBy = table.Column<string>(type: "text", nullable: false),
+                    TestName = table.Column<string>(type: "text", nullable: false),
+                    TestDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Results = table.Column<string>(type: "text", nullable: false),
+                    Notes = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -173,14 +178,14 @@ namespace HospitalManagementSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PatientId = table.Column<long>(type: "bigint", nullable: false),
-                    Conditions = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Medications = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Allergies = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HadSurgery = table.Column<bool>(type: "bit", nullable: true),
-                    DateOfLastVisit = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PatientId = table.Column<long>(type: "bigint", nullable: true),
+                    Conditions = table.Column<List<string>>(type: "text[]", nullable: true),
+                    Medications = table.Column<List<string>>(type: "text[]", nullable: true),
+                    Allergies = table.Column<List<string>>(type: "text[]", nullable: true),
+                    HadSurgery = table.Column<bool>(type: "boolean", nullable: true),
+                    DateOfLastVisit = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    Notes = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -189,8 +194,7 @@ namespace HospitalManagementSystem.Migrations
                         name: "FK_MedicalHistories_Patients_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -198,10 +202,10 @@ namespace HospitalManagementSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Dosage = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateIssued = table.Column<DateTime>(type: "datetime2", nullable: false),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Dosage = table.Column<string>(type: "text", nullable: false),
+                    DateIssued = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     PatientId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>

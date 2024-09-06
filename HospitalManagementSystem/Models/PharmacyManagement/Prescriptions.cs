@@ -8,8 +8,10 @@ namespace HospitalManagementSystem.Models.PharmacyManagement
         public string Name { get; set; } = string.Empty;
         public string Dosage { get; set; } = string.Empty;
         public DateTime DateIssued { get; set; }   
+
         public long PatientId { get; set; }
 
         public Patient Patient { get; set; }
+
     }
 }
