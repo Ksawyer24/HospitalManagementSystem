@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HospitalManagementSystem.Dto;
 using HospitalManagementSystem.Models.AppointmentManagement;
+using HospitalManagementSystem.Models.Billing_Management;
 using HospitalManagementSystem.Models.DoctorManagement;
 using HospitalManagementSystem.Models.LabManagement;
 using HospitalManagementSystem.Models.PatientManagement;
@@ -45,6 +46,8 @@ namespace HospitalManagementSystem.Mappings
             CreateMap<AddAppointmentDto, Appointment>().ReverseMap();
             CreateMap<UpdateAppointmentDto, Appointment>().ReverseMap();
 
+            CreateMap<BillingInvoice, BillingInvoiceDto>().ReverseMap();
+            CreateMap<AdddBillingInvoiceDto, BillingInvoice>().ReverseMap();
 
 
         }

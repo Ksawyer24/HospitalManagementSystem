@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class addition : Migration
+    public partial class prime_add : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -102,25 +102,24 @@ namespace HospitalManagementSystem.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InvoiceItems",
+                name: "InvoiceItem",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ProductName = table.Column<string>(type: "text", nullable: false),
+                    ItemName = table.Column<string>(type: "text", nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "numeric", nullable: false),
                     Quantity = table.Column<int>(type: "integer", nullable: false),
-                    UnitPrice = table.Column<decimal>(type: "numeric(18,4)", nullable: false),
-                    InvoiceId = table.Column<long>(type: "bigint", nullable: false)
+                    BillingInvoiceId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InvoiceItems", x => x.Id);
+                    table.PrimaryKey("PK_InvoiceItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_InvoiceItems_BillingInvoices_InvoiceId",
-                        column: x => x.InvoiceId,
+                        name: "FK_InvoiceItem_BillingInvoices_BillingInvoiceId",
+                        column: x => x.BillingInvoiceId,
                         principalTable: "BillingInvoices",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -225,9 +224,9 @@ namespace HospitalManagementSystem.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InvoiceItems_InvoiceId",
-                table: "InvoiceItems",
-                column: "InvoiceId");
+                name: "IX_InvoiceItem_BillingInvoiceId",
+                table: "InvoiceItem",
+                column: "BillingInvoiceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LabTests_PatientId",
@@ -259,7 +258,7 @@ namespace HospitalManagementSystem.Migrations
                 name: "Inventories");
 
             migrationBuilder.DropTable(
-                name: "InvoiceItems");
+                name: "InvoiceItem");
 
             migrationBuilder.DropTable(
                 name: "LabTests");

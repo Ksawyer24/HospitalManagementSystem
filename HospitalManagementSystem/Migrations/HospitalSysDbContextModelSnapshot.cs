@@ -97,10 +97,10 @@ namespace HospitalManagementSystem.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("InvoiceId")
+                    b.Property<long?>("BillingInvoiceId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("ProductName")
+                    b.Property<string>("ItemName")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -108,13 +108,13 @@ namespace HospitalManagementSystem.Migrations
                         .HasColumnType("integer");
 
                     b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InvoiceId");
+                    b.HasIndex("BillingInvoiceId");
 
-                    b.ToTable("InvoiceItems");
+                    b.ToTable("InvoiceItem");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.Models.DoctorManagement.Doctor", b =>
@@ -377,13 +377,9 @@ namespace HospitalManagementSystem.Migrations
 
             modelBuilder.Entity("HospitalManagementSystem.Models.Billing_Management.InvoiceItem", b =>
                 {
-                    b.HasOne("HospitalManagementSystem.Models.Billing_Management.BillingInvoice", "Invoice")
+                    b.HasOne("HospitalManagementSystem.Models.Billing_Management.BillingInvoice", null)
                         .WithMany("Items")
-                        .HasForeignKey("InvoiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Invoice");
+                        .HasForeignKey("BillingInvoiceId");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.Models.LabManagement.LabTest", b =>

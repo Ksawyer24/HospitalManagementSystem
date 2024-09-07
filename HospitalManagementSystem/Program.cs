@@ -30,6 +30,7 @@ builder.Services.AddScoped<IPrescriptionRepo, PrescriptionRepo>();
 builder.Services.AddScoped<IInventoryRepo, InventoryRepo>();
 builder.Services.AddScoped<ILabTestRepo,LabTestRepo>();
 builder.Services.AddScoped<IAppointmentRepo, AppointmentRepo>();
+builder.Services.AddScoped<IBillingInvoiceRepo, BillingInvoiceRepo>();
 
 
 

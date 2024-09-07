@@ -1,16 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace HospitalManagementSystem.Models.Billing_Management
+﻿namespace HospitalManagementSystem.Models.Billing_Management
 {
     public class InvoiceItem
     {
-        public long Id { get; set; }
-        public string ProductName { get; set; } = string.Empty;
+       public long Id { get; set; }
+        public string ItemName { get; set; } = string.Empty;
+        public decimal UnitPrice { get; set; }
         public int Quantity { get; set; }
 
-        [Column(TypeName = "decimal(18,4)")]
-        public decimal UnitPrice { get; set; }
-        public long InvoiceId { get; set; }
-       public BillingInvoice Invoice { get; set; }
+        public decimal TotalPrice => UnitPrice * Quantity;
     }
 }
