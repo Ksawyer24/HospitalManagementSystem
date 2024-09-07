@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HospitalManagementSystem.Dto;
+using HospitalManagementSystem.Models.AppointmentManagement;
 using HospitalManagementSystem.Models.DoctorManagement;
 using HospitalManagementSystem.Models.LabManagement;
 using HospitalManagementSystem.Models.PatientManagement;
@@ -32,13 +33,17 @@ namespace HospitalManagementSystem.Mappings
             CreateMap<AddPrescriptionDto, Prescriptions>().ReverseMap();
             CreateMap<UpdatePrescription, Prescriptions>().ReverseMap();
 
-            CreateMap<Inventory, PrescriptionDto>().ReverseMap();
+            CreateMap<Inventory, InventoryDto>().ReverseMap();
             CreateMap<AddInventoryDto, Inventory>().ReverseMap();
             CreateMap<UpdateInventoryDto, Inventory>().ReverseMap();
 
-            CreateMap<LabTest, PrescriptionDto>().ReverseMap();
-            //CreateMap<AddPrescriptionDto, Prescriptions>().ReverseMap();
-            //CreateMap<UpdatePrescription, Prescriptions>().ReverseMap();
+            CreateMap<LabTest, LabTestDto>().ReverseMap();
+            CreateMap<AddLabTestDto, LabTest>().ReverseMap();
+            CreateMap<UpdateLabTestDto, LabTest>().ReverseMap();
+
+            CreateMap<Appointment, AppointmentDto>().ReverseMap();
+            CreateMap<AddAppointmentDto, Appointment>().ReverseMap();
+            CreateMap<UpdateAppointmentDto, Appointment>().ReverseMap();
 
 
 

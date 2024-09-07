@@ -2,6 +2,7 @@
 using HospitalManagementSystem.Data;
 using HospitalManagementSystem.Dto;
 using HospitalManagementSystem.Models.DoctorManagement;
+using HospitalManagementSystem.Models.LabManagement;
 using HospitalManagementSystem.Services.Interface;
 using HospitalManagementSystem.Services.Repos;
 using Microsoft.AspNetCore.Http;
@@ -11,32 +12,32 @@ namespace HospitalManagementSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DoctorController : ControllerBase
+    public class LabTestController : ControllerBase
     {
         private readonly HospitalSysDbContext hospitalSysDbContext;
-        private readonly IDoctorRepo doctorRepo;
+        private readonly ILabTestRepo labTestRepo;
         private readonly IMapper mapper;
 
-        public DoctorController(HospitalSysDbContext hospitalSysDbContext,IDoctorRepo doctorRepo,IMapper mapper)
+        public LabTestController(HospitalSysDbContext hospitalSysDbContext,ILabTestRepo labTestRepo,IMapper mapper)
         {
             this.hospitalSysDbContext = hospitalSysDbContext;
-            this.doctorRepo = doctorRepo;
+            this.labTestRepo = labTestRepo;
             this.mapper = mapper;
         }
 
-       [HttpGet]
-       public async Task<IActionResult> GetAllDocs()
-       {
+        [HttpGet]
+        public async Task<IActionResult> GetAllDocs()
+        {
 
-            var dom = await doctorRepo.GetAllDoctorsAsync();
+            var dom = await labTestRepo.GetAllTestsAsync();
 
 
-            var dto = mapper.Map<List<DoctorDto>>(dom);
+            var dto = mapper.Map<List<LabTestDto>>(dom);
 
 
             return Ok(dto);
 
-       }
+        }
 
 
 
@@ -45,31 +46,31 @@ namespace HospitalManagementSystem.Controllers
         public async Task<IActionResult> GetById([FromRoute] long id)
         {
 
-            var doc = await doctorRepo.GetDoctorsIdAsync(id);
+            var doc = await labTestRepo.GetTestIdAsync(id);
 
             if (doc == null)
             {
                 return NotFound();
             }
 
-            return Ok(mapper.Map<DoctorDto>(doc));
+            return Ok(mapper.Map<LabTestDto>(doc));
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> AddDoc([FromBody] AddDoctorDto addDoctorDto)
+        public async Task<IActionResult> AddDoc([FromBody] AddLabTestDto addLabTestDto)
         {
             //Map or convert dto to domain model
 
-            var domainModel = mapper.Map<Doctor>(addDoctorDto);
+            var domainModel = mapper.Map<LabTest>(addLabTestDto);
 
 
-            //Use domain model to create doctor 
+            //Use domain model to create test
 
-            domainModel = await doctorRepo.CreateAsync(domainModel);
+            domainModel = await labTestRepo.CreateAsync(domainModel);
 
             //map domain model back to dto
-            var docDto = mapper.Map<DoctorDto>(domainModel);
+            var docDto = mapper.Map<LabTestDto>(domainModel);
 
 
             return CreatedAtAction(nameof(GetById), new { id = docDto.Id }, domainModel);
@@ -79,30 +80,28 @@ namespace HospitalManagementSystem.Controllers
 
         [HttpPut]
         [Route("{id:long}")]
-        public async Task<IActionResult> UpdateDoc([FromRoute] long id , UpdateDoctorDto updateDoctorDto)
+        public async Task<IActionResult> UpdateDoc([FromRoute] long id, UpdateLabTestDto updateLabTestDto)
         {
             //map dto to domain model
-            var regionDomainmodel = mapper.Map<Doctor>(updateDoctorDto);
+            var testDomainmodel = mapper.Map<LabTest>(updateLabTestDto);
 
 
 
             //Check if doc exists
-            regionDomainmodel = await doctorRepo.UpdateDoctorAsync(id, regionDomainmodel);
+            testDomainmodel = await labTestRepo.UpdateTestAsync(id, testDomainmodel);
 
-            if (regionDomainmodel == null)
+            if (testDomainmodel == null)
             {
                 return NotFound();
             }
 
 
-
             //map dto to domain model
-
 
             //convert domain model to dto
 
 
-            return Ok(mapper.Map<DoctorDto>(regionDomainmodel));
+            return Ok(mapper.Map<DoctorDto>(testDomainmodel));
         }
 
 
@@ -112,7 +111,7 @@ namespace HospitalManagementSystem.Controllers
         [Route("{id:long}")]
         public async Task<IActionResult> Delete([FromRoute] long id)
         {
-            var domainModel = await doctorRepo.DeleteDoctorsAsync(id);
+            var domainModel = await labTestRepo.DeleteTestAsync(id);
 
             if (domainModel == null)
             {
@@ -128,3 +127,4 @@ namespace HospitalManagementSystem.Controllers
 
     }
 }
+

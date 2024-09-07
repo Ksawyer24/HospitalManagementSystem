@@ -28,7 +28,7 @@ namespace HospitalManagementSystem.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
 
-            var domain = await medicalHistoryRepo.GetAllPatientsAsync();
+            var domain = await medicalHistoryRepo.GetAllHistoriesAsync();
 
 
             var domdto = mapper.Map<List<MedicalHistoryDto>>(domain);
@@ -46,10 +46,7 @@ namespace HospitalManagementSystem.Controllers
         public async Task<IActionResult> GetById([FromRoute] long id)
         {
 
-
-
-
-            var eco = await medicalHistoryRepo.GetPatientIdAsync(id);
+            var eco = await medicalHistoryRepo.GetHistoryIdAsync(id);
 
             if (eco == null)
             {
@@ -61,33 +58,23 @@ namespace HospitalManagementSystem.Controllers
         }
 
 
-       /* [HttpPost]
-        public async Task<IActionResult> Create([FromBody] AddMedicalHistory addMedicalHistory)
-        {
+      //[HttpPost]
+      //  public async Task<IActionResult> Create([FromBody] AddMedicalHistory addMedicalHistory)
+      //  {
+
+      //      var ecodomainmodel = mapper.Map<MedicalHistory>(addMedicalHistory);
 
 
+      //      ecodomainmodel = await medicalHistoryRepo.CreateAsync(ecodomainmodel);
 
 
+      //      var ecoDto = mapper.Map<MedicalHistoryDto>(ecodomainmodel);
 
 
-            var ecodomainmodel = mapper.Map<MedicalHistory>(addMedicalHistory);
+      //      return CreatedAtAction(nameof(GetById), new { id = ecoDto.Id }, ecoDto);
 
-
-
-
-            ecodomainmodel = await medicalHistoryRepo.CreateAsync(ecodomainmodel);
-
-
-            var ecoDto = mapper.Map<MedicalHistoryDto>(ecodomainmodel);
-
-
-            return CreatedAtAction(nameof(GetById), new { id = ecoDto.Id }, ecoDto);
-
-
-
-
-        }
-       */
+      //  }
+      
 
 
         [HttpPut]
@@ -104,7 +91,7 @@ namespace HospitalManagementSystem.Controllers
 
 
 
-            ecodomainmodel = await medicalHistoryRepo.UpdatePatientAsync(id, ecodomainmodel);
+            ecodomainmodel = await medicalHistoryRepo.UpdateHistoryAsync(id, ecodomainmodel);
 
             if (ecodomainmodel == null)
             {
@@ -124,24 +111,17 @@ namespace HospitalManagementSystem.Controllers
 
         [HttpDelete]
         [Route("{id:long}")]
-
         public async Task<IActionResult> Delete([FromRoute] long id)
         {
+            var domainModel = await medicalHistoryRepo.DeleteHistoryAsync(id);
 
-            var regionDomainModel = await medicalHistoryRepo.DeletePatientAsync(id);
-
-
-            if (regionDomainModel == null)
+            if (domainModel == null)
             {
                 return NotFound();
             }
 
-
-
-
-            return Ok(mapper.Map<MedicalHistoryDto>(regionDomainModel));
-
-
+            // Return only the success message
+            return Ok("Deleted successfully");
         }
 
 

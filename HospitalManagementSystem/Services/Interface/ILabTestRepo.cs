@@ -5,14 +5,14 @@ namespace HospitalManagementSystem.Services.Interface
 {
     public interface ILabTestRepo
     {
-        Task<List<LabTest>> GetAllInentoriesAsync();
+        Task<List<LabTest>> GetAllTestsAsync();
 
-        Task<LabTest?> GetInvIdAsync(long id);
+        Task<LabTest?> GetTestIdAsync(long id);
 
         Task<LabTest> CreateAsync(LabTest labTest);
 
-        Task<LabTest?> UpdateInventoryAsync(long id, LabTest labTest);
+        Task<LabTest?> UpdateTestAsync(long id, LabTest labTest);
 
-        Task<LabTest?> DeleteInventoryAsync(long id);
+        Task<LabTest?> DeleteTestAsync(long id);
     }
 }

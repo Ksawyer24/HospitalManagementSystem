@@ -31,7 +31,7 @@ namespace HospitalManagementSystem.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
 
-            var domain = await inventoryRepo.GetAllInentoriesAsync();
+            var domain = await inventoryRepo.GetAllInventoriesAsync();
 
 
            var domdto = mapper.Map<List<InventoryDto>>(domain);
@@ -109,25 +109,19 @@ namespace HospitalManagementSystem.Controllers
 
         [HttpDelete]
         [Route("{id:long}")]
-
         public async Task<IActionResult> Delete([FromRoute] long id)
         {
-
-           var domainModel = await inventoryRepo.DeleteInventoryAsync(id);
-
+            var domainModel = await inventoryRepo.DeleteInventoryAsync(id);
 
             if (domainModel == null)
             {
                 return NotFound();
             }
 
-
-
-
-            return Ok(mapper.Map<InventoryDto>(domainModel));
-
-
+            // Return only the success message
+            return Ok("Deleted successfully");
         }
+
 
     }
 }

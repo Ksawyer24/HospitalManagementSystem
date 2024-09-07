@@ -5,7 +5,7 @@ namespace HospitalManagementSystem.Services.Interface
 {
     public interface IInventoryRepo
     {
-        Task<List<Inventory>> GetAllInentoriesAsync();
+        Task<List<Inventory>> GetAllInventoriesAsync();
 
         Task<Inventory?> GetInvIdAsync(long id);
 

@@ -22,7 +22,7 @@ namespace HospitalManagementSystem.Services.Repos
             return medical;
         }
 
-        public async Task<MedicalHistory?> DeletePatientAsync(long id)
+        public async Task<MedicalHistory?> DeleteHistoryAsync(long id)
         {
             var existing = await hospitalSysDbContext.MedicalHistories.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -35,20 +35,25 @@ namespace HospitalManagementSystem.Services.Repos
             hospitalSysDbContext.MedicalHistories.Remove(existing);
             await hospitalSysDbContext.SaveChangesAsync();
             return existing;
-
         }
 
-        public async Task<List<MedicalHistory>> GetAllPatientsAsync()
+       
+
+        public async Task<List<MedicalHistory>> GetAllHistoriesAsync()
         {
-           return await hospitalSysDbContext.MedicalHistories.ToListAsync();
+            return await hospitalSysDbContext.MedicalHistories.ToListAsync();
         }
 
-        public async Task<MedicalHistory?> GetPatientIdAsync(long id)
+       
+
+        public async Task<MedicalHistory?> GetHistoryIdAsync(long id)
         {
             return await hospitalSysDbContext.MedicalHistories.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<MedicalHistory?> UpdatePatientAsync(long id, MedicalHistory medical)
+       
+
+        public async Task<MedicalHistory?> UpdateHistoryAsync(long id, MedicalHistory medical)
         {
             var existing = await hospitalSysDbContext.MedicalHistories.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -59,7 +64,7 @@ namespace HospitalManagementSystem.Services.Repos
             }
 
 
-           
+
             existing.Conditions = medical.Conditions;
             existing.Medications = medical.Medications;
             existing.Allergies = medical.Allergies;
@@ -72,5 +77,7 @@ namespace HospitalManagementSystem.Services.Repos
             await hospitalSysDbContext.SaveChangesAsync();
             return existing;
         }
+
+       
     }
 }

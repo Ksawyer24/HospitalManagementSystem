@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalManagementSystem.Migrations
 {
     [DbContext(typeof(HospitalSysDbContext))]
-    [Migration("20240903161040_syspush")]
-    partial class syspush
+    [Migration("20240906232021_addition")]
+    partial class addition
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

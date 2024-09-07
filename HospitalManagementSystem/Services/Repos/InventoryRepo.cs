@@ -38,7 +38,7 @@ namespace HospitalManagementSystem.Services.Repos
             return existing;
         }
 
-        public async Task<List<Inventory>> GetAllInentoriesAsync()
+        public async Task<List<Inventory>> GetAllInventoriesAsync()
         {
             return await hospitalSysDbContext.Inventories.ToListAsync();
         }

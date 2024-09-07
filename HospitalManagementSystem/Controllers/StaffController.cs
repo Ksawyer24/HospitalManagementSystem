@@ -110,24 +110,17 @@ namespace HospitalManagementSystem.Controllers
 
         [HttpDelete]
         [Route("{id:long}")]
-
         public async Task<IActionResult> Delete([FromRoute] long id)
         {
+            var domainModel = await staffRepo.DeleteStaffAsync(id);
 
-            var regionDomainModel = await staffRepo.DeleteStaffAsync(id);
-
-
-            if (regionDomainModel == null)
+            if (domainModel == null)
             {
                 return NotFound();
             }
 
-
-
-
-            return Ok(mapper.Map<StaffDto>(regionDomainModel));
-
-
+            // Return only the success message
+            return Ok("Deleted successfully");
         }
 
 

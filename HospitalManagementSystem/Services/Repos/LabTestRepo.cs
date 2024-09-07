@@ -24,7 +24,8 @@ namespace HospitalManagementSystem.Services.Repos
 
         }
 
-        public async Task<LabTest?> DeleteInventoryAsync(long id)
+
+        public async Task<LabTest?> DeleteTestAsync(long id)
         {
             var existing = await hospitalSysDbContext.LabTests.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -39,17 +40,22 @@ namespace HospitalManagementSystem.Services.Repos
             return existing;
         }
 
-        public async Task<List<LabTest>> GetAllInentoriesAsync()
+        
+
+        public async Task<List<LabTest>> GetAllTestsAsync()
         {
-            return await hospitalSysDbContext.LabTests.ToListAsync();
+             return await hospitalSysDbContext.LabTests.ToListAsync();
         }
 
-        public Task<LabTest?> GetInvIdAsync(long id)
+     
+
+        public async Task<LabTest?> GetTestIdAsync(long id)
         {
-            return hospitalSysDbContext.LabTests.FirstOrDefaultAsync(x=> x.Id == id);   
+            return await hospitalSysDbContext.LabTests.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<LabTest?> UpdateInventoryAsync(long id, LabTest labTest)
+     
+        public async Task<LabTest?> UpdateTestAsync(long id, LabTest labTest)
         {
             var existing = await hospitalSysDbContext.LabTests.FirstOrDefaultAsync(x => x.Id == id);
 

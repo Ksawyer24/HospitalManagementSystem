@@ -26,7 +26,7 @@ namespace HospitalManagementSystem.Dto
 
         public long PatientId { get; set; }
 
-        public Patient Patient { get; set; }
+       // public Patient Patient { get; set; }
 
     }
 
@@ -41,7 +41,7 @@ namespace HospitalManagementSystem.Dto
 
         public long PatientId { get; set; }
 
-        public Patient Patient { get; set; }
+       // public Patient Patient { get; set; }
 
     }
 }

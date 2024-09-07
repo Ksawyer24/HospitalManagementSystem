@@ -3,6 +3,7 @@ using HospitalManagementSystem.Data;
 using HospitalManagementSystem.Dto;
 using HospitalManagementSystem.Models.PatientManagement;
 using HospitalManagementSystem.Services.Interface;
+using HospitalManagementSystem.Services.Repos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -110,27 +111,21 @@ namespace HospitalManagementSystem.Controllers
 
 
 
-          [HttpDelete]
-          [Route("{id:long}")]
+        [HttpDelete]
+        [Route("{id:long}")]
+        public async Task<IActionResult> Delete([FromRoute] long id)
+        {
 
-          public async Task<IActionResult> Delete([FromRoute] long id)
-          {
+            var domainModel = await patientRepo.DeletePatientAsync(id);
 
-              var regionDomainModel = await patientRepo.DeletePatientAsync(id);
+            if (domainModel == null)
+            {
+                return NotFound();
+            }
 
+            // Return only the success message
+            return Ok("Deleted successfully");
+        }
 
-              if (regionDomainModel == null)
-              {
-                  return NotFound("Product has been deleted or is not found");
-              }
-
-
-
-
-              return Ok(mapper.Map<PatientDto>(regionDomainModel));
-
-
-          }
-         
     }
 }
