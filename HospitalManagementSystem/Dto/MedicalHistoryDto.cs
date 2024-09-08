@@ -13,7 +13,7 @@ namespace HospitalManagementSystem.Dto
         public DateTime DateOfLastVisit { get; set; }
         public string? Notes { get; set; } = string.Empty;
 
-       // public PatientDto Patient { get; set; }
+      
     }
 
 

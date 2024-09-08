@@ -6,7 +6,9 @@ namespace HospitalManagementSystem.Models.PharmacyManagement
     {
         public long Id { get; set; }
         public string Name { get; set; } = string.Empty;
+        public DateTime DateOfDelivery { get; set; }
         public DateTime ExpiryDate { get; set; }
+        public int Quantity { get; set; }
         public string Supplier { get; set; } = string.Empty;
 
         [Phone]

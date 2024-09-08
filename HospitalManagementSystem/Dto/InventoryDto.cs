@@ -6,7 +6,9 @@ namespace HospitalManagementSystem.Dto
     {
         public long Id { get; set; }
         public string Name { get; set; } = string.Empty;
+        public DateTime DateOfDelivery { get; set; }
         public DateTime ExpiryDate { get; set; }
+        public int Quantity { get; set; }
         public string Supplier { get; set; } = string.Empty;
 
         [Phone]
@@ -18,7 +20,9 @@ namespace HospitalManagementSystem.Dto
     public class AddInventoryDto
     {
         public string Name { get; set; } = string.Empty;
+        public DateTime DateOfDelivery { get; set; }
         public DateTime ExpiryDate { get; set; }
+        public int Quantity { get; set; }
         public string Supplier { get; set; } = string.Empty;
 
         [Phone]
@@ -30,7 +34,9 @@ namespace HospitalManagementSystem.Dto
     public class UpdateInventoryDto
     {
         public string Name { get; set; } = string.Empty;
+        public DateTime DateOfDelivery { get; set; }
         public DateTime ExpiryDate { get; set; }
+        public int Quantity { get; set; }
         public string Supplier { get; set; } = string.Empty;
 
         [Phone]

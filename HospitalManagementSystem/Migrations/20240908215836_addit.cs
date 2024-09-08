@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class prime_add : Migration
+    public partial class addit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -56,7 +56,9 @@ namespace HospitalManagementSystem.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
+                    DateOfDelivery = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ExpiryDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Quantity = table.Column<int>(type: "integer", nullable: false),
                     Supplier = table.Column<string>(type: "text", nullable: false),
                     SupplierContact = table.Column<string>(type: "text", nullable: false)
                 },
@@ -131,6 +133,7 @@ namespace HospitalManagementSystem.Migrations
                     PatientId = table.Column<long>(type: "bigint", nullable: false),
                     DoctorId = table.Column<long>(type: "bigint", nullable: false),
                     AppointmentDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Time = table.Column<TimeSpan>(type: "interval", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false),
                     Reason = table.Column<string>(type: "text", nullable: false),
                     Notes = table.Column<string>(type: "text", nullable: true),

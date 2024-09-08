@@ -39,7 +39,6 @@ namespace HospitalManagementSystem.Controllers
 
            return Ok(domdto);
 
-
         }
 
 
@@ -101,7 +100,13 @@ namespace HospitalManagementSystem.Controllers
             }
 
 
-            return Ok(mapper.Map<InventoryDto>(ecodomainmodel));
+            // return Ok(mapper.Map<InventoryDto>(ecodomainmodel));
+
+            return Ok(new
+            {
+                Message = "Inventory Updated!",
+                Inventory = mapper.Map<InventoryDto>(ecodomainmodel)
+            });
 
 
         }

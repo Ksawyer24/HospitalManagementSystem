@@ -112,7 +112,7 @@ namespace HospitalManagementSystem.Controllers
         public async Task<ActionResult> DeleteInvoice(long id)
         {
             await billingInvoiceRepo.DeleteInvoiceAsync(id);
-            return NoContent();
+            return Ok("Deleted successfully");
         }
     }
 }

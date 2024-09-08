@@ -60,7 +60,9 @@ namespace HospitalManagementSystem.Services.Repos
 
 
             existing.Name = inventory.Name;
+            existing.DateOfDelivery = inventory.DateOfDelivery;
             existing.ExpiryDate = inventory.ExpiryDate;
+            existing.Quantity = inventory.Quantity; 
             existing.Supplier = inventory.Supplier;
             existing.SupplierContact = inventory.SupplierContact;
           

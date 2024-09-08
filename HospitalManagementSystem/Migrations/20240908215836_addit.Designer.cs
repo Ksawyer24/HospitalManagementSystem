@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalManagementSystem.Migrations
 {
     [DbContext(typeof(HospitalSysDbContext))]
-    [Migration("20240907021053_prime_add")]
-    partial class prime_add
+    [Migration("20240908215836_addit")]
+    partial class addit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,6 +55,9 @@ namespace HospitalManagementSystem.Migrations
                     b.Property<string>("Reason")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<TimeSpan>("Time")
+                        .HasColumnType("interval");
 
                     b.HasKey("AppointmentId");
 
@@ -283,12 +286,18 @@ namespace HospitalManagementSystem.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
+                    b.Property<DateTime>("DateOfDelivery")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Supplier")
                         .IsRequired()
@@ -398,9 +407,11 @@ namespace HospitalManagementSystem.Migrations
 
             modelBuilder.Entity("HospitalManagementSystem.Models.PatientManagement.MedicalHistory", b =>
                 {
-                    b.HasOne("HospitalManagementSystem.Models.PatientManagement.Patient", null)
+                    b.HasOne("HospitalManagementSystem.Models.PatientManagement.Patient", "Patient")
                         .WithOne("MedicalHistory")
                         .HasForeignKey("HospitalManagementSystem.Models.PatientManagement.MedicalHistory", "PatientId");
+
+                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.Models.PharmacyManagement.Prescriptions", b =>

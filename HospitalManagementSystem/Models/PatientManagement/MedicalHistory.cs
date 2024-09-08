@@ -10,6 +10,7 @@
         public bool? HadSurgery { get; set; }
         public DateTime? DateOfLastVisit { get; set; }
         public string? Notes { get; set; } = string.Empty;
+        public Patient Patient { get; set; }
 
        
 

@@ -6,7 +6,7 @@ namespace HospitalManagementSystem.Models.LabManagement
     {
         public long Id { get; set; }
         public long PatientId { get; set; }  // Foreign key to Patient
-        public string MLS { get; set; }  = string.Empty;
+        public string MLS { get; set; }  = string.Empty; //Medical Laboratory Scientist
         public string ReviewedBy { get; set; } = string.Empty;
         public string TestName { get; set; } = string.Empty;
         public DateTime TestDate { get; set; }

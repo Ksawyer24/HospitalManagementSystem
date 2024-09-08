@@ -53,6 +53,9 @@ namespace HospitalManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<TimeSpan>("Time")
+                        .HasColumnType("interval");
+
                     b.HasKey("AppointmentId");
 
                     b.HasIndex("PatientId");
@@ -280,12 +283,18 @@ namespace HospitalManagementSystem.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
+                    b.Property<DateTime>("DateOfDelivery")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Supplier")
                         .IsRequired()
@@ -395,9 +404,11 @@ namespace HospitalManagementSystem.Migrations
 
             modelBuilder.Entity("HospitalManagementSystem.Models.PatientManagement.MedicalHistory", b =>
                 {
-                    b.HasOne("HospitalManagementSystem.Models.PatientManagement.Patient", null)
+                    b.HasOne("HospitalManagementSystem.Models.PatientManagement.Patient", "Patient")
                         .WithOne("MedicalHistory")
                         .HasForeignKey("HospitalManagementSystem.Models.PatientManagement.MedicalHistory", "PatientId");
+
+                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.Models.PharmacyManagement.Prescriptions", b =>

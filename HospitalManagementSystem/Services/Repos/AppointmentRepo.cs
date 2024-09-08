@@ -64,6 +64,7 @@ namespace HospitalManagementSystem.Services.Repos
             existing.PatientId = appointment.PatientId;
             existing.DoctorId = appointment.DoctorId;
             existing.AppointmentDate = appointment.AppointmentDate;
+            existing.Time = appointment.Time;
             existing.IsActive = appointment.IsActive;
             existing.Reason = appointment.Reason;
             existing.Notes = appointment.Notes;

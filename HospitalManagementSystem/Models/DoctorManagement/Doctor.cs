@@ -12,6 +12,8 @@ namespace HospitalManagementSystem.Models.DoctorManagement
 
         [Phone]
         public string ContactNumber { get; set; } = string.Empty;
+
+        [EmailAddress]
         public string Email { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;
         public string WorkingDays { get; set; } = string.Empty;
