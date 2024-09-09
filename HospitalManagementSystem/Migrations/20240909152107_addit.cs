@@ -133,7 +133,7 @@ namespace HospitalManagementSystem.Migrations
                     PatientId = table.Column<long>(type: "bigint", nullable: false),
                     DoctorId = table.Column<long>(type: "bigint", nullable: false),
                     AppointmentDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Time = table.Column<TimeSpan>(type: "interval", nullable: false),
+                    Time = table.Column<string>(type: "text", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false),
                     Reason = table.Column<string>(type: "text", nullable: false),
                     Notes = table.Column<string>(type: "text", nullable: true),

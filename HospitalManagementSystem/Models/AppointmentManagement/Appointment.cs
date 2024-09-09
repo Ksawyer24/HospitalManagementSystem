@@ -9,7 +9,8 @@ namespace HospitalManagementSystem.Models.AppointmentManagement
         public long PatientId { get; set; }
         public long DoctorId { get; set; }
         public DateTime AppointmentDate { get; set; }
-        public TimeSpan Time {  get; set; }
+
+        public string Time {  get; set; } = string.Empty;
         public bool IsActive { get; set; } 
         public string Reason { get; set; } = string.Empty;
         public string? Notes { get; set; } = string.Empty;

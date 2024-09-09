@@ -53,8 +53,9 @@ namespace HospitalManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<TimeSpan>("Time")
-                        .HasColumnType("interval");
+                    b.Property<string>("Time")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("AppointmentId");
 

@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalManagementSystem.Migrations
 {
     [DbContext(typeof(HospitalSysDbContext))]
-    [Migration("20240908215836_addit")]
+    [Migration("20240909152107_addit")]
     partial class addit
     {
         /// <inheritdoc />
@@ -56,8 +56,9 @@ namespace HospitalManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<TimeSpan>("Time")
-                        .HasColumnType("interval");
+                    b.Property<string>("Time")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("AppointmentId");
 
