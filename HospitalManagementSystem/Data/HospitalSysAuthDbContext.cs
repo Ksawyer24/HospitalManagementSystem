@@ -48,7 +48,7 @@ namespace HospitalManagementSystem.Data
 
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<IdentityRole>().HasData(roles);
+            modelBuilder.Entity<IdentityRole>().HasData(roles);  
         }
     }
 }
