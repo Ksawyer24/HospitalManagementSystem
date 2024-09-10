@@ -5,7 +5,7 @@ namespace HospitalManagementSystem.Models.PatientManagement
     public class MedicalHistory
     {
         public long Id { get; set; }
-        public long? PatientId { get; set; }
+        public long? PatientId { get; set; } //foreign key
         public List<string>? Conditions { get; set; }
         public List<string>? Medications { get; set; }
         public List<string>? Allergies { get; set; }
@@ -14,7 +14,7 @@ namespace HospitalManagementSystem.Models.PatientManagement
         public string? Notes { get; set; } = string.Empty;
 
         [JsonIgnore]
-        public Patient Patient { get; set; }
+        public Patient Patient { get; set; } //one to one
 
        
     }
