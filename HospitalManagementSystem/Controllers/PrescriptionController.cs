@@ -7,6 +7,7 @@ using HospitalManagementSystem.Services.Interface;
 using HospitalManagementSystem.Services.Repos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManagementSystem.Controllers
 {
@@ -29,13 +30,30 @@ namespace HospitalManagementSystem.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
 
-            var domain = await prescriptionRepo.GetAllAsync();
+            var patient = await hospitalSysDbContext.Prescriptions
+               .Include(p => p.Patient)  // Eager load MedicalHistory
+               .ToListAsync();
+
+            if (patient == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(patient);
 
 
-            var domdto = mapper.Map<List<PrescriptionDto>>(domain);
 
 
-            return Ok(domdto);
+
+
+
+            //var domain = await prescriptionRepo.GetAllAsync();
+
+
+            //var domdto = mapper.Map<List<PrescriptionDto>>(domain);
+
+
+            //return Ok(domdto);
 
 
         }

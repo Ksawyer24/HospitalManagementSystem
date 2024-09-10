@@ -14,11 +14,7 @@ namespace HospitalManagementSystem.Mappings
     {
         public MapperProfiles()
         {
-            //CreateMap<Patient, PatientDto>().ReverseMap();
-             CreateMap<Patient, PatientDto>()
-            .ForMember(dest => dest.MedicalHistory, opt => opt.MapFrom(src => src.MedicalHistory));
-
-
+            CreateMap<Patient, PatientDto>().ReverseMap();
             CreateMap<AddPatientDto, Patient>().ReverseMap();
             CreateMap<UpdatePatientDto, Patient>().ReverseMap();
 

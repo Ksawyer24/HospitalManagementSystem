@@ -6,6 +6,9 @@ using HospitalManagementSystem.Services.Interface;
 using HospitalManagementSystem.Services.Repos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace HospitalManagementSystem.Controllers
 {
@@ -30,13 +33,32 @@ namespace HospitalManagementSystem.Controllers
           public async Task<IActionResult> GetAllAsync()
           {
 
-              var domain = await patientRepo.GetAllPatientsAsync();
+
+            // Eager loading the MedicalHistory with Include
+            var patient = await hospitalSysDbContext.Patients
+                .Include(p => p.MedicalHistory)  // Eager load MedicalHistory
+                .ToListAsync();
+
+                if (patient == null)
+                {
+                  return NotFound();
+                }
+
+                   return Ok(patient);
 
 
-              var domdto = mapper.Map<List<PatientDto>>(domain);
 
 
-              return Ok(domdto);
+
+
+
+            //var domain = await patientRepo.GetAllPatientsAsync();
+
+
+            //var domdto = mapper.Map<List<PatientDto>>(domain);
+
+
+            //return Ok(domdto);
 
 
           }
@@ -49,18 +71,28 @@ namespace HospitalManagementSystem.Controllers
 
           public async Task<IActionResult> GetById([FromRoute] long id)
           {
+             // Eager loading the MedicalHistory with Include
+              var patient = await hospitalSysDbContext.Patients
+                .Include(p => p.MedicalHistory)  // Eager load MedicalHistory
+                .FirstOrDefaultAsync(p => p.Id == id);
 
-
-
-
-              var eco = await patientRepo.GetPatientIdAsync(id);
-
-              if (eco == null)
-              {
+               if (patient == null)
+               {
                   return NotFound();
-              }
+               }
 
-              return Ok(mapper.Map<PatientDto>(eco));
+                  return Ok(patient);
+
+
+
+            //var eco = await patientRepo.GetPatientIdAsync(id);
+
+            //if (eco == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return Ok(mapper.Map<PatientDto>(eco));
 
           }
 

@@ -21,6 +21,9 @@ builder.Services.AddDbContext<HospitalSysDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("HospitalConnectionString")));
 
 
+builder.Services.AddDbContext<HospitalSysDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("HospitalAuthConnectionString")));
+
 
 builder.Services.AddAutoMapper(typeof(MapperProfiles));
 

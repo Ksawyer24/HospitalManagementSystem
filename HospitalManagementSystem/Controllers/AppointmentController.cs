@@ -5,6 +5,7 @@ using HospitalManagementSystem.Models.AppointmentManagement;
 using HospitalManagementSystem.Models.DoctorManagement;
 using HospitalManagementSystem.Services.Interface;
 using HospitalManagementSystem.Services.Repos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ namespace HospitalManagementSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+   // [Authorize]
     public class AppointmentController : ControllerBase
     {
         private readonly HospitalSysDbContext hospitalSysDbContext;

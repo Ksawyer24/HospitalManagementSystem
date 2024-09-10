@@ -1,4 +1,6 @@
-﻿namespace HospitalManagementSystem.Models.PatientManagement
+﻿using System.Text.Json.Serialization;
+
+namespace HospitalManagementSystem.Models.PatientManagement
 {
     public class MedicalHistory
     {
@@ -10,10 +12,10 @@
         public bool? HadSurgery { get; set; }
         public DateTime? DateOfLastVisit { get; set; }
         public string? Notes { get; set; } = string.Empty;
+
+        [JsonIgnore]
         public Patient Patient { get; set; }
 
        
-
-
     }
 }

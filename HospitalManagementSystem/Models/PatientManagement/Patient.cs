@@ -2,6 +2,7 @@
 using HospitalManagementSystem.Models.LabManagement;
 using HospitalManagementSystem.Models.PharmacyManagement;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace HospitalManagementSystem.Models.PatientManagement
 {
@@ -24,6 +25,7 @@ namespace HospitalManagementSystem.Models.PatientManagement
 
        public ICollection<Appointment>Appointments { get; set; } = new List<Appointment>();
 
+        [JsonIgnore]
         public ICollection<Prescriptions> Prescriptions { get; set; } = new List<Prescriptions>();
 
       public ICollection<LabTest> Labs { get; set; } = new List<LabTest>();
