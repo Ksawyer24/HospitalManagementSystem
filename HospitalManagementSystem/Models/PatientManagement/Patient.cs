@@ -23,12 +23,12 @@ namespace HospitalManagementSystem.Models.PatientManagement
 
         public bool? InsuranceIsActive { get; set; }
 
-       public ICollection<Appointment>Appointments { get; set; } = new List<Appointment>();
-
+        public ICollection<Appointment>Appointments { get; set; } = new List<Appointment>();
+ 
         [JsonIgnore]
         public ICollection<Prescriptions> Prescriptions { get; set; } = new List<Prescriptions>();
 
-      public ICollection<LabTest> Labs { get; set; } = new List<LabTest>();
+        public ICollection<LabTest> Labs { get; set; } = new List<LabTest>();
 
         public MedicalHistory MedicalHistory { get; set; }
 
