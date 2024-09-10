@@ -14,7 +14,7 @@ namespace HospitalManagementSystem.Models.PatientManagement
         public string? Notes { get; set; } = string.Empty;
 
         [JsonIgnore]
-        public Patient Patient { get; set; } //one to one
+        public Patient Patient { get; set; } //one to one relationship established
 
        
     }
