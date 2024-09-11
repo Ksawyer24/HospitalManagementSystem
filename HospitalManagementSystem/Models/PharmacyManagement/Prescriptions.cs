@@ -11,7 +11,7 @@ namespace HospitalManagementSystem.Models.PharmacyManagement
 
         public long PatientId { get; set; }
 
-        public Patient Patient { get; set; }
+        public Patient? Patient { get; set; }
 
     }
 }

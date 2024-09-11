@@ -14,7 +14,7 @@ namespace HospitalManagementSystem.Models.LabManagement
         public string? Notes { get; set; } = string.Empty;
 
 
-        public Patient Patient { get; set; }
+        public Patient? Patient { get; set; }
         
     }
 }

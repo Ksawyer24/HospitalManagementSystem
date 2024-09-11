@@ -16,7 +16,7 @@ namespace HospitalManagementSystem.Models.AppointmentManagement
         public string? Notes { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; }
 
-        public Patient Patient { get; set; }
+        public Patient? Patient { get; set; }
 
 
     }

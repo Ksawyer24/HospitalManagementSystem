@@ -12,7 +12,7 @@ namespace HospitalManagementSystem.Dto
 
         public long PatientId { get; set; }
 
-        public PatientDto Patient { get; set; }
+        public PatientDto? Patient { get; set; }
     }
 
 

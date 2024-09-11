@@ -30,7 +30,7 @@ namespace HospitalManagementSystem.Models.PatientManagement
 
         public ICollection<LabTest> Labs { get; set; } = new List<LabTest>();
 
-        public MedicalHistory MedicalHistory { get; set; } //one to one
+        public MedicalHistory? MedicalHistory { get; set; } //one to one
 
 
 

@@ -20,7 +20,7 @@ namespace HospitalManagementSystem.Dto
 
         public bool? InsuranceIsActive { get; set; }
 
-        public MedicalHistory MedicalHistory { get; set; }
+        public MedicalHistory? MedicalHistory { get; set; }
 
     }
 
@@ -42,7 +42,7 @@ namespace HospitalManagementSystem.Dto
 
        
 
-        public AddMedicalHistory MedicalHistory { get; set; }
+        public AddMedicalHistory? MedicalHistory { get; set; }
 
     }
 

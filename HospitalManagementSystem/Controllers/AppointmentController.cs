@@ -13,22 +13,24 @@ namespace HospitalManagementSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   // [Authorize]
+     
     public class AppointmentController : ControllerBase
     {
         private readonly HospitalSysDbContext hospitalSysDbContext;
         private readonly IAppointmentRepo appointmentRepo;
         private readonly IMapper mapper;
 
-        public AppointmentController(HospitalSysDbContext hospitalSysDbContext,IAppointmentRepo appointmentRepo,IMapper mapper)
+        public AppointmentController(HospitalSysDbContext hospitalSysDbContext, IAppointmentRepo appointmentRepo, IMapper mapper)
         {
             this.hospitalSysDbContext = hospitalSysDbContext;
             this.appointmentRepo = appointmentRepo;
             this.mapper = mapper;
         }
 
-         
+
         [HttpGet]
+        [Authorize(Roles = "MainAdmin,Admin")]
+       
         public async Task<IActionResult> GetAllDocs()
         {
 
@@ -46,6 +48,8 @@ namespace HospitalManagementSystem.Controllers
 
         [HttpGet]
         [Route("{id:long}")]
+        [Authorize(Roles = "MainAdmin,Admin")]
+       
         public async Task<IActionResult> GetById([FromRoute] long id)
         {
 
@@ -57,10 +61,13 @@ namespace HospitalManagementSystem.Controllers
             }
 
             return Ok(mapper.Map<AppointmentDto>(doc));
+
         }
 
 
+
         [HttpPost]
+        [Authorize(Roles = "MainAdmin")]
         public async Task<IActionResult> AddDoc([FromBody] AddAppointmentDto addAppointmentDto)
         {
             //Map or convert dto to domain model
@@ -78,16 +85,17 @@ namespace HospitalManagementSystem.Controllers
 
             return CreatedAtAction(nameof(GetById), new { id = docDto.AppointmentId }, domainModel);
 
-
         }
+
 
         [HttpPut]
         [Route("{id:long}")]
+        [Authorize(Roles = "MainAdmin")]
         public async Task<IActionResult> UpdateDoc([FromRoute] long id, UpdateAppointmentDto updateAppointmentDto)
         {
+
             //map dto to domain model
             var regionDomainmodel = mapper.Map<Appointment>(updateAppointmentDto);
-
 
 
             //Check if appointment exists
@@ -100,11 +108,11 @@ namespace HospitalManagementSystem.Controllers
 
             //map dto to domain model
 
-
             //convert domain model to dto
 
 
             return Ok(mapper.Map<AppointmentDto>(regionDomainmodel));
+
         }
 
 
@@ -112,6 +120,7 @@ namespace HospitalManagementSystem.Controllers
 
         [HttpDelete]
         [Route("{id:long}")]
+        [Authorize(Roles = "MainAdmin")]
         public async Task<IActionResult> Delete([FromRoute] long id)
         {
             var domainModel = await appointmentRepo.DeleteAppointmentsAsync(id);
@@ -121,8 +130,11 @@ namespace HospitalManagementSystem.Controllers
                 return NotFound();
             }
 
+
+            
             // Return only the success message
             return Ok("Deleted successfully");
+
         }
     }
 }

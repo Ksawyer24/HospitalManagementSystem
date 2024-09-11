@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalManagementSystem.Controllers
 {
@@ -30,7 +31,8 @@ namespace HospitalManagementSystem.Controllers
 
         
          [HttpGet]
-          public async Task<IActionResult> GetAllAsync()
+        [Authorize(Roles = "MainAdmin,Admin")]
+        public async Task<IActionResult> GetAllAsync()
           {
 
 
@@ -67,10 +69,9 @@ namespace HospitalManagementSystem.Controllers
 
           [HttpGet]
           [Route("{id:long}")]
-
-
-          public async Task<IActionResult> GetById([FromRoute] long id)
-          {
+          [Authorize(Roles = "MainAdmin,Admin")]
+        public async Task<IActionResult> GetById([FromRoute] long id)
+        {
              // Eager loading the MedicalHistory with Include
               var patient = await hospitalSysDbContext.Patients
                 .Include(p => p.MedicalHistory)  // Eager load MedicalHistory
@@ -98,8 +99,8 @@ namespace HospitalManagementSystem.Controllers
 
 
           [HttpPost]
-
-          public async Task<IActionResult> Create([FromBody] AddPatientDto addPatientDto)
+          [Authorize(Roles = "MainAdmin")]
+        public async Task<IActionResult> Create([FromBody] AddPatientDto addPatientDto)
           {
 
 
@@ -120,8 +121,9 @@ namespace HospitalManagementSystem.Controllers
 
           [HttpPut]
           [Route("{id:long}")]
+          [Authorize(Roles = "MainAdmin")]
 
-          public async Task<IActionResult> UpdateProduct([FromRoute] long id, [FromBody] UpdatePatientDto updatePatientDto)
+        public async Task<IActionResult> UpdateProduct([FromRoute] long id, [FromBody] UpdatePatientDto updatePatientDto)
           {
 
 
@@ -145,6 +147,7 @@ namespace HospitalManagementSystem.Controllers
 
         [HttpDelete]
         [Route("{id:long}")]
+        [Authorize(Roles = "MainAdmin")]
         public async Task<IActionResult> Delete([FromRoute] long id)
         {
 
