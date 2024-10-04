@@ -5,13 +5,15 @@ using HospitalManagementSystem.Models.DoctorManagement;
 using HospitalManagementSystem.Models.LabManagement;
 using HospitalManagementSystem.Services.Interface;
 using HospitalManagementSystem.Services.Repos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagementSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/labtests")]
     [ApiController]
+    [Authorize(Roles = "MainAdmin")]
     public class LabTestController : ControllerBase
     {
         private readonly HospitalSysDbContext hospitalSysDbContext;

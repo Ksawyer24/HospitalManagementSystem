@@ -4,13 +4,15 @@ using HospitalManagementSystem.Dto;
 using HospitalManagementSystem.Models.DoctorManagement;
 using HospitalManagementSystem.Services.Interface;
 using HospitalManagementSystem.Services.Repos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagementSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/doctors")]
     [ApiController]
+    [Authorize(Roles = "MainAdmin")]
     public class DoctorController : ControllerBase
     {
         private readonly HospitalSysDbContext hospitalSysDbContext;

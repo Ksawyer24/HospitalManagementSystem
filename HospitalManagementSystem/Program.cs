@@ -1,5 +1,6 @@
 using HospitalManagementSystem.Data;
 using HospitalManagementSystem.Mappings;
+using HospitalManagementSystem.Models.Auth;
 using HospitalManagementSystem.Services.Interface;
 using HospitalManagementSystem.Services.Repos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -75,9 +76,9 @@ builder.Services.AddScoped<ITokenRepo, TokenRepo>();
 
 
 
-builder.Services.AddIdentityCore<IdentityUser>()
+builder.Services.AddIdentityCore<User>()
   .AddRoles<IdentityRole>()
-    .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("HospitalSys")
+    .AddTokenProvider<DataProtectorTokenProvider<User>>("HospitalSys")
     .AddEntityFrameworkStores<HospitalSysAuthDbContext>()
     .AddDefaultTokenProviders();
 

@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalManagementSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/patients")]
     [ApiController]
     public class PatientController : ControllerBase
     {
@@ -31,39 +31,35 @@ namespace HospitalManagementSystem.Controllers
 
         
          [HttpGet]
-        [Authorize(Roles = "MainAdmin,Admin")]
-        public async Task<IActionResult> GetAllAsync()
-          {
-
-
-            // Eager loading the MedicalHistory with Include
-            var patient = await hospitalSysDbContext.Patients
+         [Authorize(Roles = "MainAdmin,Admin")]
+        public async Task<IActionResult> GetAllAsync([FromQuery] string? filterQuery)
+        {
+               // Eager loading the MedicalHistory with Include
+              var patientsQuery = hospitalSysDbContext.Patients
                 .Include(p => p.MedicalHistory)  // Eager load MedicalHistory
-                .ToListAsync();
-
-                if (patient == null)
-                {
-                  return NotFound();
-                }
-
-                   return Ok(patient);
+                .AsQueryable();  // Make the query extendable
 
 
+              // Apply filtering by name if filterQuery is provided
+              if (!string.IsNullOrEmpty(filterQuery))
+              {
+
+                patientsQuery = patientsQuery.Where(p => p.PatientName.Contains(filterQuery));
+
+              }
 
 
+            var patients = await patientsQuery.ToListAsync();
 
+            if (patients == null || patients.Count == 0)
+            {
+                return NotFound();
+            }
 
+              return Ok(patients);
 
-            //var domain = await patientRepo.GetAllPatientsAsync();
+        }
 
-
-            //var domdto = mapper.Map<List<PatientDto>>(domain);
-
-
-            //return Ok(domdto);
-
-
-          }
 
 
 
@@ -77,10 +73,13 @@ namespace HospitalManagementSystem.Controllers
                 .Include(p => p.MedicalHistory)  // Eager load MedicalHistory
                 .FirstOrDefaultAsync(p => p.Id == id);
 
+
+
                if (patient == null)
                {
                   return NotFound();
                }
+
 
                   return Ok(patient);
 
@@ -95,13 +94,13 @@ namespace HospitalManagementSystem.Controllers
 
             //return Ok(mapper.Map<PatientDto>(eco));
 
-          }
+        }
 
 
           [HttpPost]
           [Authorize(Roles = "MainAdmin")]
         public async Task<IActionResult> Create([FromBody] AddPatientDto addPatientDto)
-          {
+        {
 
 
               var ecodomainmodel = mapper.Map<Patient>(addPatientDto);
@@ -116,7 +115,7 @@ namespace HospitalManagementSystem.Controllers
              return CreatedAtAction(nameof(GetById), new { id = ecoDto.Id }, ecoDto);
 
 
-          }
+        }
 
 
           [HttpPut]
@@ -124,7 +123,7 @@ namespace HospitalManagementSystem.Controllers
           [Authorize(Roles = "MainAdmin")]
 
         public async Task<IActionResult> UpdateProduct([FromRoute] long id, [FromBody] UpdatePatientDto updatePatientDto)
-          {
+        {
 
 
               var ecodomainmodel = mapper.Map<Patient>(updatePatientDto);
@@ -141,7 +140,7 @@ namespace HospitalManagementSystem.Controllers
               return Ok(mapper.Map<PatientDto>(ecodomainmodel));
 
 
-          }
+        }
 
 
 
@@ -150,17 +149,91 @@ namespace HospitalManagementSystem.Controllers
         [Authorize(Roles = "MainAdmin")]
         public async Task<IActionResult> Delete([FromRoute] long id)
         {
-
-            var domainModel = await patientRepo.DeletePatientAsync(id);
-
-            if (domainModel == null)
+            // Check if the patient exists
+            var patient = await patientRepo.GetPatientIdAsync(id);
+            if (patient == null)
             {
-                return NotFound();
+                return NotFound(); // Return 404 if the patient does not exist
             }
+
+            // Check for related medical histories
+            var medicalHistories = await hospitalSysDbContext.MedicalHistories
+                .Where(mh => mh.PatientId == id)
+                .ToListAsync();
+
+            // Delete related medical histories
+            if (medicalHistories.Any())
+            {
+                hospitalSysDbContext.MedicalHistories.RemoveRange(medicalHistories);
+                await hospitalSysDbContext.SaveChangesAsync();
+            }
+
+            // Proceed with deletion of the patient
+            await patientRepo.DeletePatientAsync(id);
 
             // Return only the success message
             return Ok("Deleted successfully");
         }
 
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//[HttpGet]
+//[Authorize(Roles = "MainAdmin,Admin")]
+//public async Task<IActionResult> GetAllAsync()
+//{
+
+
+//    // Eager loading the MedicalHistory with Include
+//    var patient = await hospitalSysDbContext.Patients
+//        .Include(p => p.MedicalHistory)  // Eager load MedicalHistory
+//        .ToListAsync();
+
+//    if (patient == null)
+//    {
+//        return NotFound();
+//    }
+
+//    return Ok(patient);
+
+
+
+
+
+
+
+//    //var domain = await patientRepo.GetAllPatientsAsync();
+
+
+//    //var domdto = mapper.Map<List<PatientDto>>(domain);
+
+
+//    //return Ok(domdto);
+
+
+//}

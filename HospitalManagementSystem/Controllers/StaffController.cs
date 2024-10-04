@@ -5,18 +5,21 @@ using HospitalManagementSystem.Models.PatientManagement;
 using HospitalManagementSystem.Models.StaffManagement;
 using HospitalManagementSystem.Services.Interface;
 using HospitalManagementSystem.Services.Repos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagementSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/staff")]
     [ApiController]
+    [Authorize(Roles = "MainAdmin")]
     public class StaffController : ControllerBase
     {
         private readonly HospitalSysDbContext hospitalSysDbContext;
         private readonly IStaffRepo staffRepo;
         private readonly IMapper mapper;
+
 
         public StaffController(HospitalSysDbContext hospitalSysDbContext,IStaffRepo staffRepo,IMapper mapper)
         {

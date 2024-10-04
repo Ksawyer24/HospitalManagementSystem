@@ -1,4 +1,5 @@
 ﻿using HospitalManagementSystem.Dto.Auth;
+using HospitalManagementSystem.Models.Auth;
 using HospitalManagementSystem.Services.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -6,14 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagementSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthContoller : ControllerBase
     {
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<User> userManager;
         private readonly ITokenRepo tokenRepo;
 
-        public AuthContoller(UserManager<IdentityUser> userManager, ITokenRepo tokenRepo)
+        public AuthContoller(UserManager<User> userManager, ITokenRepo tokenRepo)
         {
             this.userManager = userManager;
             this.tokenRepo = tokenRepo;
@@ -23,10 +24,13 @@ namespace HospitalManagementSystem.Controllers
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] SignUpRequestDto signUpRequest)
         {
-            var identityuser = new IdentityUser
+            var identityuser = new User
             {
                 UserName = signUpRequest.UserName,
-                Email = signUpRequest.Email
+                Email = signUpRequest.Email,
+               // PhoneNumber = signUpRequest.PhoneNumber,
+                 FirstName = signUpRequest.FirstName, 
+                LastName = signUpRequest.LastName
             };
 
 

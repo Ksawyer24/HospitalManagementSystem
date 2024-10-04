@@ -4,13 +4,15 @@ using HospitalManagementSystem.Dto;
 using HospitalManagementSystem.Models.PatientManagement;
 using HospitalManagementSystem.Services.Interface;
 using HospitalManagementSystem.Services.Repos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagementSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/medicalhistory")]
     [ApiController]
+
     public class MedicalHistoryController : ControllerBase
     {
         private readonly HospitalSysDbContext hospitalSysDbContext;
@@ -25,6 +27,7 @@ namespace HospitalManagementSystem.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "MainAdmin,Admin")]
         public async Task<IActionResult> GetAllAsync()
         {
 
@@ -43,6 +46,7 @@ namespace HospitalManagementSystem.Controllers
 
         [HttpGet]
         [Route("{id:long}")]
+        [Authorize(Roles = "MainAdmin,Admin")]
         public async Task<IActionResult> GetById([FromRoute] long id)
         {
 
@@ -79,6 +83,7 @@ namespace HospitalManagementSystem.Controllers
 
         [HttpPut]
         [Route("{id:long}")]
+        [Authorize(Roles = "MainAdmin")]
 
         public async Task<IActionResult> UpdateProduct([FromRoute] long id, [FromBody] UpdateMedicalHistory updateMedicalHistory)
         {
@@ -111,6 +116,7 @@ namespace HospitalManagementSystem.Controllers
 
         [HttpDelete]
         [Route("{id:long}")]
+        [Authorize(Roles = "MainAdmin")]
         public async Task<IActionResult> Delete([FromRoute] long id)
         {
             var domainModel = await medicalHistoryRepo.DeleteHistoryAsync(id);

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagementSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/appointments")]
     [ApiController]
      
     public class AppointmentController : ControllerBase

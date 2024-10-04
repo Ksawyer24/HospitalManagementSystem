@@ -5,13 +5,15 @@ using HospitalManagementSystem.Models.AppointmentManagement;
 using HospitalManagementSystem.Models.Billing_Management;
 using HospitalManagementSystem.Services.Interface;
 using HospitalManagementSystem.Services.Repos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagementSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/billinginvoice")]
     [ApiController]
+    [Authorize(Roles = "MainAdmin")]
     public class BillingInvoiceController : ControllerBase
     {
         private readonly HospitalSysDbContext hospitalSysDbContext;

@@ -42,9 +42,24 @@ namespace HospitalManagementSystem.Services.Repos
 
         }
 
-        public async Task<List<Patient>> GetAllPatientsAsync()
+        public async Task<List<Patient>> GetAllPatientsAsync(string filterOn = null, string? filterQuery = null, string? sortBy = null, bool isAscending = true, int pageNumber = 1, int pageSize = 1000)
         {
-           return await hospitalSysDbContext.Patients.ToListAsync();
+            var patients = hospitalSysDbContext.Patients.Include("MedicalHistory").AsQueryable();
+
+            //filtering
+            if (string.IsNullOrEmpty(filterOn) == false && string.IsNullOrWhiteSpace(filterQuery) == false)
+            {
+                if (filterOn.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                {
+                    patients = patients.Where(x => x.PatientName.Contains(filterQuery));
+                }
+            }
+
+            return await patients.ToListAsync();
+
+
+
+            //return await hospitalSysDbContext.Patients.ToListAsync();
         }
 
         public async Task<Patient?> UpdatePatientAsync(long patientId, Patient patient)
