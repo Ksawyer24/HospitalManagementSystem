@@ -83,7 +83,7 @@ namespace HospitalManagementSystem.Controllers
         
 
 
-        [HttpPost]
+        [HttpPost("prescription-add")]
 
         public async Task<IActionResult> Create([FromBody] AddPrescriptionDto addPrescriptionDto)
         {

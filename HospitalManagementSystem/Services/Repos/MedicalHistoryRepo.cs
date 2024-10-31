@@ -69,7 +69,6 @@ namespace HospitalManagementSystem.Services.Repos
             existing.Medications = medical.Medications;
             existing.Allergies = medical.Allergies;
             existing.HadSurgery = medical.HadSurgery;
-            existing.DateOfLastVisit = medical.DateOfLastVisit;
             existing.Notes = medical.Notes;
 
 

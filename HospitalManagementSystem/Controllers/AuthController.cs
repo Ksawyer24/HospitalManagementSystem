@@ -21,7 +21,7 @@ namespace HospitalManagementSystem.Controllers
         }
 
         [HttpPost]
-        [Route("Register")]
+        [Route("register")]
         public async Task<IActionResult> Register([FromBody] SignUpRequestDto signUpRequest)
         {
             var identityuser = new User
@@ -63,7 +63,7 @@ namespace HospitalManagementSystem.Controllers
 
 
         [HttpPost]
-        [Route("Login")]
+        [Route("login")]
         public async Task<IActionResult> Login([FromBody] SignInRequestDto signInRequest)
         {
             var user = await userManager.FindByNameAsync(signInRequest.Username);

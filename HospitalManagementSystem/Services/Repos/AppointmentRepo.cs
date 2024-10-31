@@ -19,6 +19,8 @@ namespace HospitalManagementSystem.Services.Repos
 
         public async Task<Appointment> CreateAsync(Appointment appointment)
         {
+            appointment.AppointmentDate = DateTime.SpecifyKind(appointment.AppointmentDate, DateTimeKind.Utc);
+            appointment.CreatedDate = DateTime.SpecifyKind(appointment.CreatedDate, DateTimeKind.Utc);
             await hospitalSysDbContext.AddAsync(appointment);
             await hospitalSysDbContext.SaveChangesAsync();
             return appointment;
@@ -63,12 +65,12 @@ namespace HospitalManagementSystem.Services.Repos
 
             existing.PatientId = appointment.PatientId;
             existing.DoctorId = appointment.DoctorId;
-            existing.AppointmentDate = appointment.AppointmentDate;
+            existing.AppointmentDate = DateTime.SpecifyKind(appointment.AppointmentDate, DateTimeKind.Utc);
             existing.Time = appointment.Time;
             existing.IsActive = appointment.IsActive;
             existing.Reason = appointment.Reason;
             existing.Notes = appointment.Notes;
-            existing.CreatedDate = appointment.CreatedDate;
+            existing.CreatedDate = DateTime.SpecifyKind(appointment.CreatedDate, DateTimeKind.Utc);
 
 
 

@@ -5,10 +5,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace HospitalManagementSystem.Migrations
+namespace HospitalManagementSystem.Migrations.HospitalSysDb
 {
     /// <inheritdoc />
-    public partial class addit : Migration
+    public partial class created : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -186,7 +186,6 @@ namespace HospitalManagementSystem.Migrations
                     Medications = table.Column<List<string>>(type: "text[]", nullable: true),
                     Allergies = table.Column<List<string>>(type: "text[]", nullable: true),
                     HadSurgery = table.Column<bool>(type: "boolean", nullable: true),
-                    DateOfLastVisit = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Notes = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>

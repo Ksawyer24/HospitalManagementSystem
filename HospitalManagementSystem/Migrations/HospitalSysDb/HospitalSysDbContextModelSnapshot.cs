@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace HospitalManagementSystem.Migrations
+namespace HospitalManagementSystem.Migrations.HospitalSysDb
 {
     [DbContext(typeof(HospitalSysDbContext))]
     partial class HospitalSysDbContextModelSnapshot : ModelSnapshot
@@ -217,9 +217,6 @@ namespace HospitalManagementSystem.Migrations
 
                     b.Property<List<string>>("Conditions")
                         .HasColumnType("text[]");
-
-                    b.Property<DateTime?>("DateOfLastVisit")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool?>("HadSurgery")
                         .HasColumnType("boolean");
@@ -434,8 +431,7 @@ namespace HospitalManagementSystem.Migrations
 
                     b.Navigation("Labs");
 
-                    b.Navigation("MedicalHistory")
-                        .IsRequired();
+                    b.Navigation("MedicalHistory");
 
                     b.Navigation("Prescriptions");
                 });

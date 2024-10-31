@@ -28,8 +28,8 @@ namespace HospitalManagementSystem.Controllers
         }
 
 
-        [HttpGet]
-        [Authorize(Roles = "MainAdmin,Admin")]
+        [HttpGet("appointments-total")]
+        [Authorize(Roles = "MainAdmin")]
        
         public async Task<IActionResult> GetAllDocs()
         {
@@ -48,7 +48,7 @@ namespace HospitalManagementSystem.Controllers
 
         [HttpGet]
         [Route("{id:long}")]
-        [Authorize(Roles = "MainAdmin,Admin")]
+        [Authorize(Roles = "MainAdmin")]
        
         public async Task<IActionResult> GetById([FromRoute] long id)
         {
@@ -66,7 +66,7 @@ namespace HospitalManagementSystem.Controllers
 
 
 
-        [HttpPost]
+        [HttpPost("appointments-add")]
         [Authorize(Roles = "MainAdmin")]
         public async Task<IActionResult> AddDoc([FromBody] AddAppointmentDto addAppointmentDto)
         {

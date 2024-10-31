@@ -26,8 +26,9 @@ namespace HospitalManagementSystem.Controllers
             this.mapper = mapper;
         }
 
-       [HttpGet]
-       public async Task<IActionResult> GetAllDocs()
+        [HttpGet("doctors-total")]
+
+        public async Task<IActionResult> GetAllDocs()
        {
 
             var dom = await doctorRepo.GetAllDoctorsAsync();
@@ -58,7 +59,7 @@ namespace HospitalManagementSystem.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("doctors-add")]
         public async Task<IActionResult> AddDoc([FromBody] AddDoctorDto addDoctorDto)
         {
             //Map or convert dto to domain model

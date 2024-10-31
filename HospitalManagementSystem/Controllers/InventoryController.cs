@@ -13,7 +13,7 @@ namespace HospitalManagementSystem.Controllers
 {
     [Route("api/inventory")]
     [ApiController]
-    [Authorize(Roles = "MainAdmin,Admin")]
+    [Authorize(Roles = "MainAdmin")]
     public class InventoryController : ControllerBase
     {
         private readonly HospitalSysDbContext hospitalSysDbContext;
@@ -29,7 +29,7 @@ namespace HospitalManagementSystem.Controllers
 
 
 
-        [HttpGet]
+        [HttpGet("inventory-total")]
         public async Task<IActionResult> GetAllAsync()
         {
 
@@ -63,7 +63,7 @@ namespace HospitalManagementSystem.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("inventory-add")]
 
         public async Task<IActionResult> Create([FromBody] AddInventoryDto addInventoryDto)
         {

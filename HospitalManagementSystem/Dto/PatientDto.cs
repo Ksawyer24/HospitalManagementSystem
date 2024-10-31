@@ -18,7 +18,7 @@ namespace HospitalManagementSystem.Dto
 
         public string PhoneNumberOfContact { get; set; } = string.Empty;
 
-        public bool? InsuranceIsActive { get; set; }
+        public bool InsuranceIsActive { get; set; }
 
         public MedicalHistory? MedicalHistory { get; set; }
 
@@ -38,7 +38,7 @@ namespace HospitalManagementSystem.Dto
 
         public string PhoneNumberOfContact { get; set; } = string.Empty;
 
-        public bool? InsuranceIsActive { get; set; }
+        public bool InsuranceIsActive { get; set; }
 
        
 

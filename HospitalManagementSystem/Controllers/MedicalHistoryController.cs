@@ -26,8 +26,8 @@ namespace HospitalManagementSystem.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet]
-        [Authorize(Roles = "MainAdmin,Admin")]
+        [HttpGet("histories-total")]
+        [Authorize(Roles = "MainAdmin")]
         public async Task<IActionResult> GetAllAsync()
         {
 
@@ -46,7 +46,7 @@ namespace HospitalManagementSystem.Controllers
 
         [HttpGet]
         [Route("{id:long}")]
-        [Authorize(Roles = "MainAdmin,Admin")]
+        [Authorize(Roles = "MainAdmin")]
         public async Task<IActionResult> GetById([FromRoute] long id)
         {
 

@@ -17,6 +17,7 @@ namespace HospitalManagementSystem.Services.Repos
 
         public async Task<Prescriptions> CreateAsync(Prescriptions prescriptions)
         {
+            prescriptions.DateIssued = DateTime.SpecifyKind(prescriptions.DateIssued, DateTimeKind.Utc);
             await hospitalSysDbContext.AddAsync(prescriptions);
             await hospitalSysDbContext.SaveChangesAsync();
             return prescriptions;
@@ -62,7 +63,7 @@ namespace HospitalManagementSystem.Services.Repos
 
             existing.Name = prescriptions.Name;
             existing.Dosage = prescriptions.Dosage;
-            existing.DateIssued = prescriptions.DateIssued;
+            existing.DateIssued = DateTime.SpecifyKind(prescriptions.DateIssued, DateTimeKind.Utc);
             existing.PatientId = prescriptions.PatientId;
 
 

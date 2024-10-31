@@ -18,6 +18,8 @@ namespace HospitalManagementSystem.Services.Repos
 
         public async Task<Inventory> CreateAsync(Inventory inventory)
         {
+            inventory.DateOfDelivery = DateTime.SpecifyKind(inventory.DateOfDelivery, DateTimeKind.Utc);
+            inventory.ExpiryDate = DateTime.SpecifyKind(inventory.ExpiryDate, DateTimeKind.Utc);
             await hospitalSysDbContext.AddAsync(inventory);
             await hospitalSysDbContext.SaveChangesAsync();
             return inventory;
@@ -60,8 +62,8 @@ namespace HospitalManagementSystem.Services.Repos
 
 
             existing.Name = inventory.Name;
-            existing.DateOfDelivery = inventory.DateOfDelivery;
-            existing.ExpiryDate = inventory.ExpiryDate;
+            existing.DateOfDelivery = DateTime.SpecifyKind(inventory.DateOfDelivery, DateTimeKind.Utc);
+             existing.ExpiryDate = DateTime.SpecifyKind(inventory.ExpiryDate, DateTimeKind.Utc);
             existing.Quantity = inventory.Quantity; 
             existing.Supplier = inventory.Supplier;
             existing.SupplierContact = inventory.SupplierContact;

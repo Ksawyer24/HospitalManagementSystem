@@ -17,6 +17,7 @@ namespace HospitalManagementSystem.Services.Repos
 
         public async Task<Staff> CreateAsync(Staff staff)
         {
+            staff.DateOfBirth = DateTime.SpecifyKind(staff.DateOfBirth, DateTimeKind.Utc);
             await hospitalSysDbContext.AddAsync(staff);
             await hospitalSysDbContext.SaveChangesAsync();
             return staff;
@@ -59,8 +60,8 @@ namespace HospitalManagementSystem.Services.Repos
             }
 
             existing.Name = staff.Name;
-            existing.DateOfBirth = staff.DateOfBirth;
-           existing.PhoneNumber = staff.PhoneNumber;
+            existing.DateOfBirth = DateTime.SpecifyKind(staff.DateOfBirth, DateTimeKind.Utc);
+            existing.PhoneNumber = staff.PhoneNumber;
             existing.Position = staff.Position;
             existing.YearsOfEmployment = staff.YearsOfEmployment;
             existing.WorkingDays = staff.WorkingDays;

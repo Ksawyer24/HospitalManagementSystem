@@ -43,7 +43,7 @@ namespace HospitalManagementSystem.Services.Repos
             var token = new JwtSecurityToken(
                 configuration["Jwt:Issuer"],
                 configuration["Jwt:Audience"],
-                claims, expires: DateTime.Now.AddMinutes(60),
+                claims, expires: DateTime.Now.AddHours(3),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

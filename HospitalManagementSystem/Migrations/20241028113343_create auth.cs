@@ -4,12 +4,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
-namespace HospitalManagementSystem.Migrations.HospitalSysAuthDb
+namespace HospitalManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class create : Migration
+    public partial class createauth : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -164,11 +162,7 @@ namespace HospitalManagementSystem.Migrations.HospitalSysAuthDb
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[,]
-                {
-                    { "92243373-b7d8-45da-aee9-4b77a8149697", "92243373-b7d8-45da-aee9-4b77a8149697", "MainAdmin", "MAINADMIN" },
-                    { "9eb172c6-a4c1-49b0-8193-0e62ce89f69f", "9eb172c6-a4c1-49b0-8193-0e62ce89f69f", "Admin", "ADMIN" }
-                });
+                values: new object[] { "92243373-b7d8-45da-aee9-4b77a8149697", "92243373-b7d8-45da-aee9-4b77a8149697", "MainAdmin", "MAINADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

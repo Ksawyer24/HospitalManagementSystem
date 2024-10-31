@@ -10,11 +10,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace HospitalManagementSystem.Migrations
+namespace HospitalManagementSystem.Migrations.HospitalSysDb
 {
     [DbContext(typeof(HospitalSysDbContext))]
-    [Migration("20240909152107_addit")]
-    partial class addit
+    [Migration("20241029151235_created")]
+    partial class created
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -220,9 +220,6 @@ namespace HospitalManagementSystem.Migrations
 
                     b.Property<List<string>>("Conditions")
                         .HasColumnType("text[]");
-
-                    b.Property<DateTime?>("DateOfLastVisit")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool?>("HadSurgery")
                         .HasColumnType("boolean");
@@ -437,8 +434,7 @@ namespace HospitalManagementSystem.Migrations
 
                     b.Navigation("Labs");
 
-                    b.Navigation("MedicalHistory")
-                        .IsRequired();
+                    b.Navigation("MedicalHistory");
 
                     b.Navigation("Prescriptions");
                 });

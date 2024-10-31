@@ -64,7 +64,7 @@ namespace HospitalManagementSystem.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("billing-add")]
         public async Task<ActionResult> AddInvoice([FromBody] AdddBillingInvoiceDto adddBillingInvoiceDto)
         {
             var invoice = new BillingInvoice

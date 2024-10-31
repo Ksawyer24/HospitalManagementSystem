@@ -29,9 +29,9 @@ namespace HospitalManagementSystem.Controllers
         }
 
 
-        
-         [HttpGet]
-         [Authorize(Roles = "MainAdmin,Admin")]
+
+        [HttpGet("patients-total")]
+        [Authorize(Roles = "MainAdmin")]
         public async Task<IActionResult> GetAllAsync([FromQuery] string? filterQuery)
         {
                // Eager loading the MedicalHistory with Include
@@ -65,7 +65,7 @@ namespace HospitalManagementSystem.Controllers
 
           [HttpGet]
           [Route("{id:long}")]
-          [Authorize(Roles = "MainAdmin,Admin")]
+          [Authorize(Roles = "MainAdmin")]
         public async Task<IActionResult> GetById([FromRoute] long id)
         {
              // Eager loading the MedicalHistory with Include
@@ -97,11 +97,11 @@ namespace HospitalManagementSystem.Controllers
         }
 
 
-          [HttpPost]
-          [Authorize(Roles = "MainAdmin")]
+        [HttpPost("patients-add")]
+        [Authorize(Roles = "MainAdmin")]
         public async Task<IActionResult> Create([FromBody] AddPatientDto addPatientDto)
         {
-
+            
 
               var ecodomainmodel = mapper.Map<Patient>(addPatientDto);
 

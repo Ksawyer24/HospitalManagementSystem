@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace HospitalManagementSystem.Migrations.HospitalSysAuthDb
+namespace HospitalManagementSystem.Migrations
 {
     [DbContext(typeof(HospitalSysAuthDbContext))]
     partial class HospitalSysAuthDbContextModelSnapshot : ModelSnapshot
@@ -120,13 +120,6 @@ namespace HospitalManagementSystem.Migrations.HospitalSysAuthDb
                     b.ToTable("AspNetRoles", (string)null);
 
                     b.HasData(
-                        new
-                        {
-                            Id = "9eb172c6-a4c1-49b0-8193-0e62ce89f69f",
-                            ConcurrencyStamp = "9eb172c6-a4c1-49b0-8193-0e62ce89f69f",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
                         new
                         {
                             Id = "92243373-b7d8-45da-aee9-4b77a8149697",

@@ -1,5 +1,6 @@
 ﻿using HospitalManagementSystem.Data;
 using HospitalManagementSystem.Models.LabManagement;
+using HospitalManagementSystem.Models.PatientManagement;
 using HospitalManagementSystem.Models.PharmacyManagement;
 using HospitalManagementSystem.Services.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ namespace HospitalManagementSystem.Services.Repos
 
         public async Task<LabTest> CreateAsync(LabTest labTest)
         {
+            labTest.TestDate = DateTime.SpecifyKind(labTest.TestDate, DateTimeKind.Utc);
             await hospitalSysDbContext.AddAsync(labTest);
             await hospitalSysDbContext.SaveChangesAsync();
             return labTest;
@@ -69,7 +71,7 @@ namespace HospitalManagementSystem.Services.Repos
             existing.MLS = labTest.MLS;
             existing.ReviewedBy = labTest.ReviewedBy;
             existing.TestName = labTest.TestName;
-            existing.TestDate = labTest.TestDate;
+            existing.TestDate = DateTime.SpecifyKind(labTest.TestDate, DateTimeKind.Utc);
 
 
 

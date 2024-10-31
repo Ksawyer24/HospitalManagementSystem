@@ -16,6 +16,7 @@ namespace HospitalManagementSystem.Services.Repos
 
         public async Task<Patient> CreateAsync(Patient patient)
         {
+            patient.DateOfBirth = DateTime.SpecifyKind(patient.DateOfBirth, DateTimeKind.Utc);
             await hospitalSysDbContext.AddAsync(patient);
             await hospitalSysDbContext.SaveChangesAsync();
             return patient;
@@ -75,7 +76,7 @@ namespace HospitalManagementSystem.Services.Repos
 
             existing.PatientName = patient.PatientName;
             existing.PatientContact = patient.PatientContact;
-            existing.DateOfBirth = patient.DateOfBirth;
+            existing.DateOfBirth = DateTime.SpecifyKind(patient.DateOfBirth, DateTimeKind.Utc);
             existing.NameOfEmergencyContact = patient.NameOfEmergencyContact;
             existing.PhoneNumberOfContact = patient.PhoneNumberOfContact;
             existing.InsuranceIsActive = patient.InsuranceIsActive;
@@ -84,6 +85,7 @@ namespace HospitalManagementSystem.Services.Repos
 
             await hospitalSysDbContext.SaveChangesAsync();
             return existing;
+
         }
     }
 }

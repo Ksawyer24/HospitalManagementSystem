@@ -10,7 +10,6 @@ namespace HospitalManagementSystem.Models.PatientManagement
         public List<string>? Medications { get; set; }
         public List<string>? Allergies { get; set; }
         public bool? HadSurgery { get; set; }
-        public DateTime? DateOfLastVisit { get; set; }
         public string? Notes { get; set; } = string.Empty;
 
         [JsonIgnore]

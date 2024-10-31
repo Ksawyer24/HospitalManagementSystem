@@ -19,18 +19,20 @@ namespace HospitalManagementSystem.Data
             base.OnModelCreating(modelBuilder);
 
             // Seed Roles into Database
-            var userRoleId = "9eb172c6-a4c1-49b0-8193-0e62ce89f69f";
+          //  var userRoleId = "9eb172c6-a4c1-49b0-8193-0e62ce89f69f";
             var mainAdminRoleId = "92243373-b7d8-45da-aee9-4b77a8149697";
 
             var roles = new List<IdentityRole>
         {
-            new IdentityRole
+            /*new IdentityRole
             {
                 Id = userRoleId,
                 ConcurrencyStamp = userRoleId,
                 Name = "Admin",
                 NormalizedName = "ADMIN"
             },
+            */
+
             new IdentityRole
             {
                 Id = mainAdminRoleId,

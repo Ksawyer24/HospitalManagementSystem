@@ -30,7 +30,7 @@ namespace HospitalManagementSystem.Controllers
 
 
 
-      [HttpGet]
+        [HttpGet("staff-total")]
         public async Task<IActionResult> GetAll()
         {
             var domain = await staffRepo.GetAllStaffAsync();
@@ -67,7 +67,7 @@ namespace HospitalManagementSystem.Controllers
 
 
 
-        [HttpPost]
+        [HttpPost("staff-add")]
         public async Task<IActionResult> AddStaff([FromBody] AddStaffDto addStaffDto)
         {
             var ecodomainmodel = mapper.Map<Staff>(addStaffDto);

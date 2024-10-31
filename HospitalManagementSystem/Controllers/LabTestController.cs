@@ -59,7 +59,7 @@ namespace HospitalManagementSystem.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("labtest-add")]
         public async Task<IActionResult> AddDoc([FromBody] AddLabTestDto addLabTestDto)
         {
             //Map or convert dto to domain model
