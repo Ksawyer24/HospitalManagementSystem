@@ -25,6 +25,7 @@ namespace HospitalManagementSystem.Data
         public DbSet<LabTest> LabTests { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<BillingInvoice> BillingInvoices { get; set; }
+        public DbSet<InvoiceItem> InvoiceItems { get; set; } 
       
 
 
@@ -32,8 +33,10 @@ namespace HospitalManagementSystem.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+      
 
-       
+
+
 
 
 

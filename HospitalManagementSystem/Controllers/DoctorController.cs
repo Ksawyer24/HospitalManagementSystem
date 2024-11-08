@@ -82,30 +82,24 @@ namespace HospitalManagementSystem.Controllers
 
         [HttpPut]
         [Route("{id:long}")]
-        public async Task<IActionResult> UpdateDoc([FromRoute] long id , UpdateDoctorDto updateDoctorDto)
+        public async Task<IActionResult> UpdateDoctor([FromRoute] long id, [FromBody] UpdateDoctorDto updateDoctorDto)
         {
-            //map dto to domain model
-            var regionDomainmodel = mapper.Map<Doctor>(updateDoctorDto);
+            // Check if doctor exists
+            var existingDoctor = await doctorRepo.GetDoctorsIdAsync(id);
 
-
-
-            //Check if doc exists
-            regionDomainmodel = await doctorRepo.UpdateDoctorAsync(id, regionDomainmodel);
-
-            if (regionDomainmodel == null)
+            if (existingDoctor == null)
             {
                 return NotFound();
             }
 
+            // Map the incoming data to the existing doctor model
+            mapper.Map(updateDoctorDto, existingDoctor);
 
+            // Update doctor in the repository
+            var updatedDoctor = await doctorRepo.UpdateDoctorAsync(id, existingDoctor);
 
-            //map dto to domain model
-
-
-            //convert domain model to dto
-
-
-            return Ok(mapper.Map<DoctorDto>(regionDomainmodel));
+            // Return the updated doctor information as a DTO
+            return Ok(mapper.Map<DoctorDto>(updatedDoctor));
         }
 
 

@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalManagementSystem.Migrations.HospitalSysDb
 {
     /// <inheritdoc />
-    public partial class created : Migration
+    public partial class createdb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -104,7 +104,7 @@ namespace HospitalManagementSystem.Migrations.HospitalSysDb
                 });
 
             migrationBuilder.CreateTable(
-                name: "InvoiceItem",
+                name: "InvoiceItems",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -112,16 +112,17 @@ namespace HospitalManagementSystem.Migrations.HospitalSysDb
                     ItemName = table.Column<string>(type: "text", nullable: false),
                     UnitPrice = table.Column<decimal>(type: "numeric", nullable: false),
                     Quantity = table.Column<int>(type: "integer", nullable: false),
-                    BillingInvoiceId = table.Column<long>(type: "bigint", nullable: true)
+                    BillingInvoiceId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InvoiceItem", x => x.Id);
+                    table.PrimaryKey("PK_InvoiceItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_InvoiceItem_BillingInvoices_BillingInvoiceId",
+                        name: "FK_InvoiceItems_BillingInvoices_BillingInvoiceId",
                         column: x => x.BillingInvoiceId,
                         principalTable: "BillingInvoices",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -226,8 +227,8 @@ namespace HospitalManagementSystem.Migrations.HospitalSysDb
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InvoiceItem_BillingInvoiceId",
-                table: "InvoiceItem",
+                name: "IX_InvoiceItems_BillingInvoiceId",
+                table: "InvoiceItems",
                 column: "BillingInvoiceId");
 
             migrationBuilder.CreateIndex(
@@ -260,7 +261,7 @@ namespace HospitalManagementSystem.Migrations.HospitalSysDb
                 name: "Inventories");
 
             migrationBuilder.DropTable(
-                name: "InvoiceItem");
+                name: "InvoiceItems");
 
             migrationBuilder.DropTable(
                 name: "LabTests");

@@ -92,6 +92,8 @@ namespace HospitalManagementSystem.Controllers
             var ecodomainmodel = mapper.Map<Prescriptions>(addPrescriptionDto);
 
 
+
+
             ecodomainmodel = await prescriptionRepo.CreateAsync(ecodomainmodel);
 
 

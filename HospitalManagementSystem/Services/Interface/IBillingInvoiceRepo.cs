@@ -9,6 +9,6 @@ namespace HospitalManagementSystem.Services.Interface
         Task<BillingInvoice> GetInvoiceByIdAsync(long id);
         Task AddInvoiceAsync(BillingInvoice invoice);
         Task UpdateInvoiceAsync(BillingInvoice invoice);
-        Task DeleteInvoiceAsync(long id);
+        Task <BillingInvoice>DeleteInvoiceAsync(long id);
     }
 }

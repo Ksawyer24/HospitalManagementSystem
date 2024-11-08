@@ -89,7 +89,7 @@ namespace HospitalManagementSystem.Controllers
         [HttpPut]
         [Route("{id:long}")]
 
-        public async Task<IActionResult> UpdateProduct([FromRoute] long id, [FromBody] UpdateStaffDto updateStaffDto)
+        public async Task<IActionResult> UpdateStaff([FromRoute] long id, [FromBody] UpdateStaffDto updateStaffDto)
         {
 
 

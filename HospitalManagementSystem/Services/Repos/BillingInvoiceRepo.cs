@@ -23,10 +23,21 @@ namespace HospitalManagementSystem.Services.Repos
             
         }
 
-        public Task DeleteInvoiceAsync(long id)
+        public async Task<BillingInvoice?> DeleteInvoiceAsync(long id)
         {
-            throw new NotImplementedException();
+            var existing = await hospitalSysDbContext.BillingInvoices.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (existing == null)
+            {
+                return null; 
+            }
+
+            hospitalSysDbContext.BillingInvoices.Remove(existing);
+            await hospitalSysDbContext.SaveChangesAsync();
+
+            return existing; 
         }
+
 
         public async Task<List<BillingInvoice>> GetAllInvoicesAsync()
         {
@@ -52,5 +63,6 @@ namespace HospitalManagementSystem.Services.Repos
             hospitalSysDbContext.BillingInvoices.Update(invoice);
             await hospitalSysDbContext.SaveChangesAsync();
         }
+
     }
 }

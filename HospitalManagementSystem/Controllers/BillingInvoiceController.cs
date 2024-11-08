@@ -110,10 +110,18 @@ namespace HospitalManagementSystem.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("{id:long}")]
         public async Task<ActionResult> DeleteInvoice(long id)
         {
-            await billingInvoiceRepo.DeleteInvoiceAsync(id);
+            var domainModel = await billingInvoiceRepo.DeleteInvoiceAsync(id);
+
+            if (domainModel == null)
+            {
+                return NotFound();
+            }
+
+           
             return Ok("Deleted successfully");
         }
     }

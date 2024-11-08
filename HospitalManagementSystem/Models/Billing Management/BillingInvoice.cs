@@ -12,9 +12,15 @@ namespace HospitalManagementSystem.Models.Billing_Management
         [Phone]
         public string PatientContact { get; set; } = string.Empty;
 
-        public List<InvoiceItem> Items { get; set; } = new List<InvoiceItem>();
+        public ICollection<InvoiceItem> Items { get; set; }
 
-        public decimal TotalAmount => Items.Sum(item => item.TotalPrice);
+        public decimal TotalAmount
+        {
+            get
+            {
+                return Items?.Sum(item => item.UnitPrice * item.Quantity) ?? 0;
+            }
+        }
 
 
     }

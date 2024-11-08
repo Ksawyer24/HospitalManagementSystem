@@ -19,6 +19,7 @@ namespace HospitalManagementSystem.Services.Repos
 
         public async Task<LabTest> CreateAsync(LabTest labTest)
         {
+           
             labTest.TestDate = DateTime.SpecifyKind(labTest.TestDate, DateTimeKind.Utc);
             await hospitalSysDbContext.AddAsync(labTest);
             await hospitalSysDbContext.SaveChangesAsync();
@@ -72,7 +73,6 @@ namespace HospitalManagementSystem.Services.Repos
             existing.ReviewedBy = labTest.ReviewedBy;
             existing.TestName = labTest.TestName;
             existing.TestDate = DateTime.SpecifyKind(labTest.TestDate, DateTimeKind.Utc);
-
 
 
             await hospitalSysDbContext.SaveChangesAsync();
