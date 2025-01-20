@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class createauth : Migration
+    public partial class move : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

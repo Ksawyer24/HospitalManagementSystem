@@ -26,10 +26,12 @@ namespace HospitalManagementSystem.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet("doctors-total")]
 
+
+
+        [HttpGet("doctors-total")]
         public async Task<IActionResult> GetAllDocs()
-       {
+        {
 
             var dom = await doctorRepo.GetAllDoctorsAsync();
 
@@ -39,7 +41,7 @@ namespace HospitalManagementSystem.Controllers
 
             return Ok(dto);
 
-       }
+        }
 
 
 
@@ -56,6 +58,7 @@ namespace HospitalManagementSystem.Controllers
             }
 
             return Ok(mapper.Map<DoctorDto>(doc));
+
         }
 
 

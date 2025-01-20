@@ -23,7 +23,7 @@ namespace HospitalManagementSystem.Data
             var mainAdminRoleId = "92243373-b7d8-45da-aee9-4b77a8149697";
 
             var roles = new List<IdentityRole>
-        {
+            {
             /*new IdentityRole
             {
                 Id = userRoleId,
@@ -40,7 +40,8 @@ namespace HospitalManagementSystem.Data
                 Name = "MainAdmin",
                 NormalizedName = "MAINADMIN"
             }
-        };
+
+            };
 
             modelBuilder.Entity<IdentityRole>().HasData(roles);
         }

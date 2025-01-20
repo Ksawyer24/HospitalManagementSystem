@@ -28,7 +28,6 @@ namespace HospitalManagementSystem.Controllers
             {
                 UserName = signUpRequest.UserName,
                 Email = signUpRequest.Email,
-               // PhoneNumber = signUpRequest.PhoneNumber,
                  FirstName = signUpRequest.FirstName, 
                 LastName = signUpRequest.LastName
             };
@@ -60,6 +59,7 @@ namespace HospitalManagementSystem.Controllers
             return BadRequest("Something went wrong");
 
         }
+
 
 
         [HttpPost]

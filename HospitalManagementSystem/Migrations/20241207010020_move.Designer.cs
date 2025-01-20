@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HospitalManagementSystem.Migrations
 {
     [DbContext(typeof(HospitalSysAuthDbContext))]
-    [Migration("20241028113343_create auth")]
-    partial class createauth
+    [Migration("20241207010020_move")]
+    partial class move
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -52,7 +52,6 @@ namespace HospitalManagementSystem.Controllers
 
 
 
-
             var eco = await staffRepo.GetStaffIdAsync(id);
 
             if (eco == null)

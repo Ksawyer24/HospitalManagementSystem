@@ -32,5 +32,6 @@ namespace HospitalManagementSystem.Dto.Auth
 
         [Required]
         public required string[] Roles { get; set; }
+
     }
 }
