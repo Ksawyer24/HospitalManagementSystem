@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace HospitalManagementSystem.Controllers
 {
     [Route("api/auth")]
@@ -51,8 +52,6 @@ namespace HospitalManagementSystem.Controllers
                     }
 
                 }
-
-
 
             }
 

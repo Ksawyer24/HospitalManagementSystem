@@ -85,14 +85,6 @@ namespace HospitalManagementSystem.Controllers
 
 
 
-            //var eco = await patientRepo.GetPatientIdAsync(id);
-
-            //if (eco == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //return Ok(mapper.Map<PatientDto>(eco));
 
         }
 
